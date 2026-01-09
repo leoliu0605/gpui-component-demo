@@ -3,8 +3,70 @@ use gpui::*;
 use gpui_component::sidebar::*;
 use gpui_component::*;
 use gpui_component_assets::Assets;
+use strum::IntoEnumIterator;
+use strum_macros::{Display, EnumIter, EnumString};
 
 actions!(system_monitor, [Quit]);
+
+#[derive(Debug, Clone, Copy, Display, EnumString, EnumIter)]
+enum Components {
+    Accordion,
+    Alert,
+    Avatar,
+    Badge,
+    Button,
+    Calendar,
+    Chart,
+    Checkbox,
+    Clipboard,
+    Collapsible,
+    ColorPicker,
+    DatePicker,
+    DescriptionList,
+    Dialog,
+    DropdownButton,
+    Editor,
+    Form,
+    GroupBox,
+    Icon,
+    Image,
+    Input,
+    Kbd,
+    Label,
+    List,
+    Menu,
+    Notification,
+    NumberInput,
+    OptInput,
+    Plot,
+    Popover,
+    Progress,
+    Radio,
+    Resizable,
+    Select,
+    Settings,
+    Sheet,
+    Side,
+    Skeleton,
+    Slider,
+    Spinner,
+    Stepper,
+    Switch,
+    Table,
+    Tabs,
+    Tag,
+    TitleBar,
+    Toggle,
+    Tooltip,
+    Tree,
+    VirtualList,
+}
+
+impl Components {
+    fn on_click(&self) {
+        println!("Open {:?} Page", self);
+    }
+}
 
 pub struct MyApp {
     sidebar_collapsed: bool,
@@ -62,19 +124,13 @@ impl Render for MyApp {
                                     SidebarMenuItem::new("Dashboard")
                                         .icon(IconName::LayoutDashboard)
                                         .active(true)
-                                        .children([
-                                            SidebarMenuItem::new("Accordion")
+                                        .children(Components::iter().map(|component| {
+                                            SidebarMenuItem::new(component.to_string())
                                                 .active(true)
-                                                .on_click(|_, _, _| {
-                                                    println!("Open Accordion Page")
-                                                }),
-                                            SidebarMenuItem::new("Alert")
-                                                .active(true)
-                                                .on_click(|_, _, _| println!("Open Alert Page")),
-                                            SidebarMenuItem::new("Avatar")
-                                                .active(true)
-                                                .on_click(|_, _, _| println!("Open Avatar Page")),
-                                        ])
+                                                .on_click(cx.listener(move |_, _, _, _| {
+                                                    component.on_click();
+                                                }))
+                                        }))
                                         .default_open(true),
                                 ),
                             )

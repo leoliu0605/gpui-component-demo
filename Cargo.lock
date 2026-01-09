@@ -2249,6 +2249,8 @@ dependencies = [
  "gpui",
  "gpui-component",
  "gpui-component-assets",
+ "strum 0.27.2",
+ "strum_macros 0.27.2",
 ]
 
 [[package]]
