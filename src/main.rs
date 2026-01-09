@@ -1,10 +1,23 @@
+use gpui::prelude::FluentBuilder;
 use gpui::*;
+use gpui_component::sidebar::*;
 use gpui_component::*;
 use gpui_component_assets::Assets;
 
 actions!(system_monitor, [Quit]);
 
-pub struct MyApp;
+pub struct MyApp {
+    sidebar_collapsed: bool,
+}
+
+impl MyApp {
+    fn new() -> Self {
+        Self {
+            sidebar_collapsed: false,
+        }
+    }
+}
+
 impl Render for MyApp {
     fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         div()
@@ -15,17 +28,66 @@ impl Render for MyApp {
                     h_flex()
                         .w_full()
                         .justify_center()
+                        .pr_20() // Add right padding to center the title correctly. See https://longbridge.github.io/gpui-component/docs/components/title-bar#macos
                         .child("GPUI Component Demo"),
                 ),
             )
             .child(
                 div()
-                    .v_flex()
-                    .gap_2()
+                    .h_flex()
                     .size_full()
-                    .items_center()
-                    .justify_center()
-                    .child("Hi"),
+                    .child(
+                        Sidebar::new(Side::Left)
+                            .w(px(200.))
+                            .collapsed(self.sidebar_collapsed)
+                            .collapsible(true)
+                            .header(
+                                SidebarHeader::new()
+                                    .child(
+                                        h_flex().when(!self.sidebar_collapsed, |this| {
+                                            this.child("Home")
+                                        }),
+                                    )
+                                    .child(
+                                        SidebarToggleButton::left()
+                                            .collapsed(self.sidebar_collapsed)
+                                            .on_click(cx.listener(|this, _, _, cx| {
+                                                this.sidebar_collapsed = !this.sidebar_collapsed;
+                                                cx.notify();
+                                            })),
+                                    ),
+                            )
+                            .child(
+                                SidebarMenu::new().child(
+                                    SidebarMenuItem::new("Dashboard")
+                                        .icon(IconName::LayoutDashboard)
+                                        .active(true)
+                                        .children([
+                                            SidebarMenuItem::new("Accordion")
+                                                .active(true)
+                                                .on_click(|_, _, _| {
+                                                    println!("Open Accordion Page")
+                                                }),
+                                            SidebarMenuItem::new("Alert")
+                                                .active(true)
+                                                .on_click(|_, _, _| println!("Open Alert Page")),
+                                            SidebarMenuItem::new("Avatar")
+                                                .active(true)
+                                                .on_click(|_, _, _| println!("Open Avatar Page")),
+                                        ])
+                                        .default_open(true),
+                                ),
+                            )
+                            .footer(SidebarFooter::new().child(h_flex().child("child"))),
+                    )
+                    .child(
+                        div()
+                            .v_flex()
+                            .size_full()
+                            .items_center()
+                            .justify_center()
+                            .child("Main Content Area"),
+                    ),
             )
             .children(Root::render_dialog_layer(window, cx))
             .children(Root::render_sheet_layer(window, cx))
@@ -52,7 +114,7 @@ fn main() {
 
         let window_options = WindowOptions {
             titlebar: Some(TitleBar::title_bar_options()),
-            window_bounds: Some(WindowBounds::centered(size(px(680.), px(600.)), cx)),
+            window_bounds: Some(WindowBounds::centered(size(px(800.), px(600.)), cx)),
             ..Default::default()
         };
 
@@ -62,7 +124,7 @@ fn main() {
 
                 Theme::change(ThemeMode::Dark, Some(window), cx);
 
-                let view = cx.new(|_| MyApp);
+                let view = cx.new(|_| MyApp::new());
                 cx.new(|cx| Root::new(view, window, cx))
             })?;
 
