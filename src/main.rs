@@ -1,6 +1,7 @@
 use gpui::prelude::FluentBuilder;
 use gpui::*;
 use gpui_component::button::{Button, ButtonVariants};
+use gpui_component::link::Link;
 use gpui_component::sidebar::*;
 use gpui_component::*;
 use gpui_component_assets::Assets;
@@ -138,12 +139,14 @@ impl Components {
 }
 
 pub struct MyApp {
+    gpui_component_version: &'static str,
     sidebar_collapsed: bool,
 }
 
 impl MyApp {
     fn new() -> Self {
         Self {
+            gpui_component_version: "0.5.0",
             sidebar_collapsed: false,
         }
     }
@@ -151,7 +154,7 @@ impl MyApp {
 
 impl Render for MyApp {
     fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
-        div()
+        v_flex()
             .size_full()
             .child(
                 // Render custom title bar on top of Root view.
@@ -166,18 +169,23 @@ impl Render for MyApp {
             .child(
                 div()
                     .h_flex()
-                    .size_full()
+                    .w_full()
+                    .h(window.window_bounds().get_bounds().size.height - TITLE_BAR_HEIGHT)
                     .child(
                         Sidebar::new(Side::Left)
                             .w(px(200.))
                             .collapsed(self.sidebar_collapsed)
                             .header(
                                 SidebarHeader::new()
-                                    .child(
-                                        h_flex().when(!self.sidebar_collapsed, |this| {
-                                            this.child("Home")
-                                        }),
-                                    )
+                                    .pt_0()
+                                    .pb_0()
+                                    .child(h_flex().when(!self.sidebar_collapsed, |this| {
+                                        this.child(
+                                            SidebarMenuItem::new("Home")
+                                                .active(true)
+                                                .on_click(|_, _, _| println!("Home clicked")),
+                                        )
+                                    }))
                                     .child(
                                         CustomSidebarToggleButton::left()
                                             .collapsed(self.sidebar_collapsed)
@@ -202,7 +210,18 @@ impl Render for MyApp {
                                         .default_open(true),
                                 ),
                             )
-                            .footer(SidebarFooter::new().child(h_flex().child("child"))),
+                            .footer(
+                                SidebarFooter::new().pt_0().pb_0().child(
+                                    h_flex().text_xs().child(
+                                        Link::new("gpui-component")
+                                            .href("https://longbridge.github.io/gpui-component/")
+                                            .child(format!(
+                                                "GPUI Component v{}",
+                                                self.gpui_component_version
+                                            )),
+                                    ),
+                                ),
+                            ),
                     )
                     .child(
                         div()
@@ -210,7 +229,7 @@ impl Render for MyApp {
                             .size_full()
                             .items_center()
                             .justify_center()
-                            .child("Main Content Area"),
+                            .child("Welcome to GPUI Component Demo!"),
                     ),
             )
             .children(Root::render_dialog_layer(window, cx))
