@@ -2,6 +2,8 @@
 
 A demo application showcasing the usage examples and visual presentation of components from the [gpui-component](https://github.com/longbridge/gpui-component) library.
 
+![alt text](images/screenshot.png)
+
 ## Overview
 
 This project serves as a comprehensive reference for developers who want to explore and understand how to use the various UI components provided by the `gpui-component` library. It demonstrates real-world usage patterns and visual rendering of each component in a desktop application built with [GPUI](https://gpui.rs/).
