@@ -2,20 +2,23 @@ use gpui::{prelude::FluentBuilder, *};
 use gpui_component::{link::Link, sidebar::*, *};
 use strum::IntoEnumIterator;
 
-use super::{AppTitleBar, MainPage};
+use super::AppTitleBar;
 use crate::models::Components;
 use crate::sidebar::CustomSidebarToggleButton;
+use crate::views::MainPage;
 
 pub struct MyApp {
     pub gpui_component_version: &'static str,
     pub sidebar_collapsed: bool,
+    pub main_page: Entity<MainPage>,
 }
 
 impl MyApp {
-    pub fn new() -> Self {
+    pub fn new(cx: &mut Context<Self>) -> Self {
         Self {
             gpui_component_version: "0.5.0",
             sidebar_collapsed: false,
+            main_page: cx.new(|cx| MainPage::new(cx)),
         }
     }
 
@@ -30,11 +33,14 @@ impl MyApp {
                     .child(h_flex().when_else(
                         !self.sidebar_collapsed,
                         |this| {
-                            this.child(
-                                SidebarMenuItem::new("Home")
-                                    .active(true)
-                                    .on_click(|_, _, _| println!("Home clicked")),
-                            )
+                            let main_page = self.main_page.clone();
+                            this.child(SidebarMenuItem::new("Home").active(true).on_click(
+                                cx.listener(move |_this, _, _, cx| {
+                                    main_page.update(cx, |page, cx| {
+                                        page.show_welcome(cx);
+                                    });
+                                }),
+                            ))
                         },
                         |this| this.hidden(),
                     ))
@@ -53,10 +59,13 @@ impl MyApp {
                         .icon(IconName::LayoutDashboard)
                         .active(true)
                         .children(Components::iter().map(|component| {
+                            let main_page = self.main_page.clone();
                             SidebarMenuItem::new(component.to_string())
                                 .active(true)
-                                .on_click(cx.listener(move |_, _, _, _| {
-                                    component.on_click();
+                                .on_click(cx.listener(move |_this, _, _, cx| {
+                                    main_page.update(cx, |page, cx| {
+                                        page.show_component(component, cx);
+                                    });
                                 }))
                         }))
                         .default_open(true),
@@ -95,7 +104,7 @@ impl Render for MyApp {
                     .w_full()
                     .h(window.window_bounds().get_bounds().size.height - TITLE_BAR_HEIGHT)
                     .child(self.render_sidebar(cx))
-                    .child(MainPage::new()),
+                    .child(self.main_page.clone()),
             )
             .children(Root::render_dialog_layer(window, cx))
             .children(Root::render_sheet_layer(window, cx))

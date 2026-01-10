@@ -1,8 +1,11 @@
+use gpui::{AnyElement, App, Window};
 use strum_macros::{Display, EnumIter, EnumString};
 
-#[derive(Debug, Clone, Copy, Display, EnumString, EnumIter)]
+use super::AccordionComponent;
+
+#[derive(Debug, Clone, Copy, Display, EnumString, EnumIter, PartialEq)]
 pub enum Components {
-    // Accordion,
+    Accordion,
     // Alert,
     // Avatar,
     // Badge,
@@ -54,8 +57,16 @@ pub enum Components {
     // VirtualList,
 }
 
+pub trait ComponentRenderer {
+    fn show(&self, window: &mut Window, cx: &mut App) -> AnyElement;
+    fn description(&self) -> &'static str;
+    fn link(&self) -> &'static str;
+}
+
 impl Components {
-    pub fn on_click(&self) {
-        println!("Open {:?} Page", self);
+    pub fn get_renderer(&self) -> Box<dyn ComponentRenderer> {
+        match self {
+            Components::Accordion => Box::new(AccordionComponent),
+        }
     }
 }

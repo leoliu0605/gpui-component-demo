@@ -32,7 +32,7 @@ fn main() {
                 window.activate_window();
                 Theme::change(ThemeMode::Dark, Some(window), cx);
 
-                let view = cx.new(|_| MyApp::new());
+                let view = cx.new(|cx| MyApp::new(cx));
                 cx.new(|cx| Root::new(view, window, cx))
             })?;
 
