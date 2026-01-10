@@ -9,7 +9,7 @@ use std::rc::Rc;
 use strum::IntoEnumIterator;
 use strum_macros::{Display, EnumIter, EnumString};
 
-actions!(system_monitor, [Quit]);
+actions!(my_app, [Quit]);
 
 /// A custom SidebarToggleButton with configurable icon size
 #[derive(IntoElement)]
