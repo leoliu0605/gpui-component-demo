@@ -75,6 +75,7 @@ impl RenderOnce for CustomSidebarToggleButton {
                 })
             })
             .icon(Icon::new(icon))
+            .when(self.collapsed, |this| this.w_full().justify_center())
     }
 }
 
@@ -179,13 +180,17 @@ impl Render for MyApp {
                                 SidebarHeader::new()
                                     .pt_0()
                                     .pb_0()
-                                    .child(h_flex().when(!self.sidebar_collapsed, |this| {
-                                        this.child(
-                                            SidebarMenuItem::new("Home")
-                                                .active(true)
-                                                .on_click(|_, _, _| println!("Home clicked")),
-                                        )
-                                    }))
+                                    .child(h_flex().when_else(
+                                        !self.sidebar_collapsed,
+                                        |this| {
+                                            this.child(
+                                                SidebarMenuItem::new("Home")
+                                                    .active(true)
+                                                    .on_click(|_, _, _| println!("Home clicked")),
+                                            )
+                                        },
+                                        |this| this.hidden(),
+                                    ))
                                     .child(
                                         CustomSidebarToggleButton::left()
                                             .collapsed(self.sidebar_collapsed)
