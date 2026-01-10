@@ -212,14 +212,21 @@ impl Render for MyApp {
                             )
                             .footer(
                                 SidebarFooter::new().pt_0().pb_0().child(
-                                    h_flex().text_xs().child(
+                                    h_flex()
+                                        .w_full()
+                                        .items_center()
+                                        .justify_center()
+                                        .text_xs()
+                                        .when(!self.sidebar_collapsed, |this| {
+                                            this.child(
                                         Link::new("gpui-component")
                                             .href("https://longbridge.github.io/gpui-component/")
                                             .child(format!(
                                                 "GPUI Component v{}",
                                                 self.gpui_component_version
                                             )),
-                                    ),
+                                    )
+                                        }),
                                 ),
                             ),
                     )
