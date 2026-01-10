@@ -1,0 +1,61 @@
+use strum_macros::{Display, EnumIter, EnumString};
+
+#[derive(Debug, Clone, Copy, Display, EnumString, EnumIter)]
+pub enum Components {
+    Accordion,
+    Alert,
+    Avatar,
+    Badge,
+    Button,
+    Calendar,
+    Chart,
+    Checkbox,
+    Clipboard,
+    Collapsible,
+    ColorPicker,
+    DatePicker,
+    DescriptionList,
+    Dialog,
+    DropdownButton,
+    Editor,
+    Form,
+    GroupBox,
+    Icon,
+    Image,
+    Input,
+    Kbd,
+    Label,
+    List,
+    Menu,
+    Notification,
+    NumberInput,
+    OptInput,
+    Plot,
+    Popover,
+    Progress,
+    Radio,
+    Resizable,
+    Select,
+    Settings,
+    Sheet,
+    Side,
+    Skeleton,
+    Slider,
+    Spinner,
+    Stepper,
+    Switch,
+    Table,
+    Tabs,
+    Tag,
+    TitleBar,
+    Toggle,
+    Tooltip,
+    Tree,
+    VirtualList,
+}
+
+impl Components {
+    pub fn on_click(&self) {
+        println!("Open {:?} Page", self);
+    }
+}

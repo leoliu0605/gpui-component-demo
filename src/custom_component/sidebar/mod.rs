@@ -1,5 +1,4 @@
-use gpui::prelude::FluentBuilder;
-use gpui::*;
+use gpui::{prelude::FluentBuilder, *};
 use gpui_component::button::{Button, ButtonVariants};
 use gpui_component::{Icon, IconName, Side, Sizable};
 use std::rc::Rc;
