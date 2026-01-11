@@ -1,4 +1,5 @@
 use gpui::{prelude::FluentBuilder, *};
+use gpui_component::button::{Button, ButtonVariants};
 use gpui_component::{link::Link, sidebar::*, *};
 use strum::IntoEnumIterator;
 
@@ -34,7 +35,7 @@ impl MyApp {
                         !self.sidebar_collapsed,
                         |this| {
                             let main_page = self.main_page.clone();
-                            this.child(SidebarMenuItem::new("Home").active(true).on_click(
+                            this.child(Button::new("home").text().label("Home").on_click(
                                 cx.listener(move |_this, _, _, cx| {
                                     main_page.update(cx, |page, cx| {
                                         page.show_welcome(cx);
