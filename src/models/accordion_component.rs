@@ -48,9 +48,21 @@ impl AccordionComponent {
 
     fn basic_accordion(&self) -> Accordion {
         Accordion::new("my-accordion")
-            .item(|item| item.title("Section 1").open(true).child("Content for section 1"))
-            .item(|item| item.title("Section 2").open(true).child("Content for section 2"))
-            .item(|item| item.title("Section 3").open(true).child("Content for section 3"))
+            .item(|item| {
+                item.title("Section 1")
+                    .open(true)
+                    .child("Content for section 1")
+            })
+            .item(|item| {
+                item.title("Section 2")
+                    .open(true)
+                    .child("Content for section 2")
+            })
+            .item(|item| {
+                item.title("Section 3")
+                    .open(true)
+                    .child("Content for section 3")
+            })
     }
 
     fn multiple_open_items_accordion(&self) -> Accordion {
