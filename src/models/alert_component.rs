@@ -39,8 +39,8 @@ impl ComponentRenderer for AlertComponent {
             .child(self.system_status_banner_alerts())
             .child(self.add_subtitle("Interactive Alert with Custom Action"))
             .child(self.interactive_alert_with_custom_action_alerts())
-            // .child(self.add_subtitle("Multi-line Content with Formatting"))
-            // .child(self.multi_line_content_with_formatting_alerts())
+            .child(self.add_subtitle("Multi-line Content with Formatting"))
+            .child(self.multi_line_content_with_formatting_alerts())
             .into_any_element()
     }
 
@@ -272,6 +272,9 @@ impl AlertComponent {
         // .icon(IconName::Shield)
         // .into_any_element()
 
-        unimplemented!("Markdown support not yet available in gpui-component v0.5.0")
+        div()
+            .text_color(rgb(0x666666))
+            .child("Not implemented yet")
+            .into_any_element()
     }
 }
