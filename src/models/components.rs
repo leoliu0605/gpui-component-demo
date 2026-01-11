@@ -11,7 +11,7 @@ use super::BadgeComponentView;
 use super::ButtonComponentView;
 use super::CalendarComponentView;
 // use super::ChartComponentView;
-// use super::CheckboxComponentView;
+use super::CheckboxComponentView;
 // use super::ClipboardComponentView;
 // use super::CollapsibleComponentView;
 // use super::ColorPickerComponentView;
@@ -79,7 +79,7 @@ pub enum Components {
     Button,
     Calendar,
     // Chart,
-    // Checkbox,
+    Checkbox,
     // Clipboard,
     // Collapsible,
     // ColorPicker,
@@ -136,7 +136,7 @@ impl Components {
             Components::Button => cx.new(|_cx| ButtonComponentView).into(),
             Components::Calendar => cx.new(|_cx| CalendarComponentView).into(),
             // Components::Chart => cx.new(|_cx| ChartComponentView).into(),
-            // Components::Checkbox => cx.new(|_cx| CheckboxComponentView::new()).into(),
+            Components::Checkbox => cx.new(|_cx| CheckboxComponentView::new()).into(),
             // Components::Clipboard => cx.new(|_cx| ClipboardComponentView).into(),
             // Components::Collapsible => cx.new(|_cx| CollapsibleComponentView).into(),
             // Components::ColorPicker => cx.new(|_cx| ColorPickerComponentView).into(),
@@ -191,7 +191,7 @@ impl Components {
             Components::Button => ButtonComponentView::DESCRIPTION,
             Components::Calendar => CalendarComponentView::DESCRIPTION,
             // Components::Chart => ChartComponentView::DESCRIPTION,
-            // Components::Checkbox => CheckboxComponentView::DESCRIPTION,
+            Components::Checkbox => CheckboxComponentView::DESCRIPTION,
             // Components::Clipboard => ClipboardComponentView::DESCRIPTION,
             // Components::Collapsible => CollapsibleComponentView::DESCRIPTION,
             // Components::ColorPicker => ColorPickerComponentView::DESCRIPTION,
@@ -246,7 +246,7 @@ impl Components {
             Components::Button => ButtonComponentView::LINK,
             Components::Calendar => CalendarComponentView::LINK,
             // Components::Chart => ChartComponentView::LINK,
-            // Components::Checkbox => CheckboxComponentView::LINK,
+            Components::Checkbox => CheckboxComponentView::LINK,
             // Components::Clipboard => ClipboardComponentView::LINK,
             // Components::Collapsible => CollapsibleComponentView::LINK,
             // Components::ColorPicker => ColorPickerComponentView::LINK,
