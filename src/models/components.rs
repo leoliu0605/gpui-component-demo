@@ -2,11 +2,12 @@ use gpui::{AnyElement, App, FontWeight, IntoElement, ParentElement, Styled, Wind
 use strum_macros::{Display, EnumIter, EnumString};
 
 use super::AccordionComponent;
+use super::AlertComponent;
 
 #[derive(Debug, Clone, Copy, Display, EnumString, EnumIter, PartialEq)]
 pub enum Components {
     Accordion,
-    // Alert,
+    Alert,
     // Avatar,
     // Badge,
     // Button,
@@ -75,6 +76,7 @@ impl Components {
     pub fn get_renderer(&self) -> Box<dyn ComponentRenderer> {
         match self {
             Components::Accordion => Box::new(AccordionComponent),
+            Components::Alert => Box::new(AlertComponent),
         }
     }
 }
