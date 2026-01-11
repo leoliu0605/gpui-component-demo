@@ -129,7 +129,7 @@ impl Components {
     /// Takes a generic context that can be dereferenced to App
     pub fn create_view<T>(&self, _window: &mut Window, cx: &mut Context<T>) -> AnyView {
         match self {
-            Components::Accordion => cx.new(|_cx| AccordionComponentView).into(),
+            Components::Accordion => cx.new(|_cx| AccordionComponentView::new()).into(),
             Components::Alert => cx.new(|_cx| AlertComponentView).into(),
             Components::Avatar => cx.new(|_cx| AvatarComponentView).into(),
             Components::Badge => cx.new(|_cx| BadgeComponentView).into(),
