@@ -1,4 +1,4 @@
-use gpui::{AnyElement, App, Window};
+use gpui::{AnyElement, App, FontWeight, IntoElement, ParentElement, Styled, Window, div, rgb};
 use strum_macros::{Display, EnumIter, EnumString};
 
 use super::AccordionComponent;
@@ -61,6 +61,14 @@ pub trait ComponentRenderer {
     fn show(&self, window: &mut Window, cx: &mut App) -> AnyElement;
     fn description(&self) -> &'static str;
     fn link(&self) -> &'static str;
+    fn add_subtitle(&self, text: &str) -> AnyElement {
+        div()
+            .text_2xl()
+            .font_weight(FontWeight::BOLD)
+            .text_color(rgb(0x333333))
+            .child(text.to_string())
+            .into_any_element()
+    }
 }
 
 impl Components {
