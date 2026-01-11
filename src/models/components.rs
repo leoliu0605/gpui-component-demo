@@ -1,4 +1,4 @@
-use gpui::{AnyElement, App, FontWeight, IntoElement, ParentElement, Styled, Window, div, rgb};
+use gpui::{AnyElement, App, FontWeight, IntoElement, ParentElement, Styled, Window, div};
 use strum_macros::{Display, EnumIter, EnumString};
 
 use super::AccordionComponent;
@@ -66,7 +66,6 @@ pub trait ComponentRenderer {
         div()
             .text_2xl()
             .font_weight(FontWeight::BOLD)
-            .text_color(rgb(0x333333))
             .child(text.to_string())
             .into_any_element()
     }
