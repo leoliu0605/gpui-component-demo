@@ -1,6 +1,6 @@
 use crate::models::Components;
 use gpui::*;
-use gpui_component::link::Link;
+use gpui_component::{link::Link, scroll::ScrollableElement};
 
 pub struct ComponentShowcase {
     pub component: Components,
@@ -29,6 +29,7 @@ impl Render for ComponentShowcase {
             .size_full()
             .p_8()
             .gap_6()
+            .overflow_hidden()
             .child(
                 div()
                     .flex()
@@ -49,11 +50,14 @@ impl Render for ComponentShowcase {
             .child(div().w_full().h(px(1.)).bg(rgb(0xe0e0e0)))
             .child(
                 div()
+                    .flex_1()
+                    .min_h_0()
                     .p_6()
                     .bg(rgb(0xf5f5f5))
                     .rounded_lg()
                     .border_1()
                     .border_color(rgb(0xe0e0e0))
+                    .overflow_y_scrollbar()
                     .child(renderer.show(window, cx)),
             )
     }
