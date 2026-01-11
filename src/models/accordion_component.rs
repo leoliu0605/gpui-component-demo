@@ -19,8 +19,7 @@ impl ComponentRenderer for AccordionComponent {
             .child(self.add_subtitle("With Borders"))
             .child(self.with_borders_accordion())
             .child(self.add_subtitle("Different Sizes"))
-            .child(self.different_sizes_small_accordion())
-            .child(self.different_sizes_large_accordion())
+            .child(self.different_sizes_accordion())
             .child(self.add_subtitle("Handle Toggle Events"))
             .child(self.handle_toggle_events_accordion())
             .child(self.add_subtitle("Disabled State"))
@@ -46,7 +45,7 @@ impl ComponentRenderer for AccordionComponent {
 impl AccordionComponent {
     /// Example code for the Accordion component
 
-    fn basic_accordion(&self) -> Accordion {
+    fn basic_accordion(&self) -> AnyElement {
         Accordion::new("my-accordion")
             .item(|item| {
                 item.title("Section 1")
@@ -63,66 +62,79 @@ impl AccordionComponent {
                     .open(true)
                     .child("Content for section 3")
             })
+            .into_any_element()
     }
 
-    fn multiple_open_items_accordion(&self) -> Accordion {
+    fn multiple_open_items_accordion(&self) -> AnyElement {
         Accordion::new("my-accordion")
             .multiple(true)
             .item(|item| item.title("Section 1").open(true).child("Content 1"))
             .item(|item| item.title("Section 2").open(true).child("Content 2"))
+            .into_any_element()
     }
 
-    fn with_borders_accordion(&self) -> Accordion {
+    fn with_borders_accordion(&self) -> AnyElement {
         Accordion::new("my-accordion")
             .bordered(true)
             .item(|item| item.title("Section 1").open(true).child("Content 1"))
+            .into_any_element()
     }
 
-    fn different_sizes_small_accordion(&self) -> Accordion {
-        Accordion::new("my-accordion")
-            .small()
-            .item(|item| item.title("Small Section").open(true).child("Content"))
+    fn different_sizes_accordion(&self) -> AnyElement {
+        v_flex()
+            .gap_4()
+            .child(
+                Accordion::new("my-accordion")
+                    .small()
+                    .item(|item| item.title("Small Section").open(true).child("Content")),
+            )
+            .child(
+                Accordion::new("my-accordion")
+                    .large()
+                    .item(|item| item.title("Large Section").open(true).child("Content")),
+            )
+            .into_any_element()
     }
 
-    fn different_sizes_large_accordion(&self) -> Accordion {
-        Accordion::new("my-accordion")
-            .large()
-            .item(|item| item.title("Large Section").open(true).child("Content"))
-    }
-
-    fn handle_toggle_events_accordion(&self) -> Accordion {
+    fn handle_toggle_events_accordion(&self) -> AnyElement {
         Accordion::new("my-accordion")
             .on_toggle_click(|open_indices, _window, _cx| {
                 println!("Open items: {:?}", open_indices);
             })
             .item(|item| item.title("Section 1").child("Content 1"))
+            .into_any_element()
     }
 
-    fn disabled_state_accordion(&self) -> Accordion {
+    fn disabled_state_accordion(&self) -> AnyElement {
         Accordion::new("my-accordion")
             .disabled(true)
             .item(|item| item.title("Disabled Section").child("Content"))
+            .into_any_element()
     }
 
-    fn with_custom_icons_accordion(&self) -> Accordion {
-        Accordion::new("my-accordion").item(|item| {
-            item.title(
-                h_flex()
-                    .gap_2()
-                    .child(Icon::new(IconName::Settings))
-                    .child("Settings"),
-            )
-            .child("Settings content here")
-        })
+    fn with_custom_icons_accordion(&self) -> AnyElement {
+        Accordion::new("my-accordion")
+            .item(|item| {
+                item.title(
+                    h_flex()
+                        .gap_2()
+                        .child(Icon::new(IconName::Settings))
+                        .child("Settings"),
+                )
+                .child("Settings content here")
+            })
+            .into_any_element()
     }
 
-    fn nested_accordions_accordion(&self) -> Accordion {
-        Accordion::new("outer").item(|item| {
-            item.title("Parent Section").child(
-                Accordion::new("inner")
-                    .item(|item| item.title("Child 1").child("Content"))
-                    .item(|item| item.title("Child 2").child("Content")),
-            )
-        })
+    fn nested_accordions_accordion(&self) -> AnyElement {
+        Accordion::new("outer")
+            .item(|item| {
+                item.title("Parent Section").open(true).child(
+                    Accordion::new("inner")
+                        .item(|item| item.title("Child 1").open(true).child("Content"))
+                        .item(|item| item.title("Child 2").open(true).child("Content")),
+                )
+            })
+            .into_any_element()
     }
 }
