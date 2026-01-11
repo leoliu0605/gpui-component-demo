@@ -21,7 +21,7 @@ fn main() {
             cx.quit();
         });
 
-        let window_size = size(px(1100.), px(700.));
+        let window_size = size(px(1150.), px(700.));
         let window_options = WindowOptions {
             titlebar: Some(TitleBar::title_bar_options()),
             window_bounds: Some(WindowBounds::centered(window_size, cx)),

@@ -3,6 +3,7 @@ pub mod alert_component;
 pub mod avatar_component;
 pub mod badge_component;
 pub mod button_component;
+pub mod calendar_component;
 pub mod components;
 
 pub use accordion_component::*;
@@ -10,4 +11,5 @@ pub use alert_component::*;
 pub use avatar_component::*;
 pub use badge_component::*;
 pub use button_component::*;
+pub use calendar_component::*;
 pub use components::*;
