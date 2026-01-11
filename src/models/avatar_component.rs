@@ -229,10 +229,10 @@ impl AvatarComponent {
     }
 
     fn avatar_with_custom_colors(&self) -> AnyElement {
-        // The avatar automatically generates colors based on the name
-        // Different names will get different colors from the color palette
         h_flex()
             .gap_4()
+            // The avatar automatically generates colors based on the name
+            // Different names will get different colors from the color palette
             .child(
                 Avatar::new().name("Alice"), // Gets one color
             )

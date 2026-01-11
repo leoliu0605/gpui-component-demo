@@ -24,23 +24,23 @@ impl ComponentRenderer for AlertComponent {
             .child(self.add_subtitle("Closable Alerts"))
             .child(self.closable_alerts())
             .child(self.add_subtitle("Banner Mode"))
-            .child(self.banner_mode_alerts())
+            .child(self.banner_mode())
             .child(self.add_subtitle("Custom Icons"))
-            .child(self.custom_icons_alerts())
+            .child(self.custom_icons())
             .child(self.add_subtitle("With Markdown Content"))
-            .child(self.with_markdown_content_alerts())
+            .child(self.with_markdown_content())
             .child(self.add_subtitle("Conditional Visibility"))
-            .child(self.conditional_visibility_alerts())
+            .child(self.conditional_visibility())
             .child(self.add_subtitle("Form Validation Errors"))
-            .child(self.form_validation_errors_alerts())
+            .child(self.form_validation_errors())
             .child(self.add_subtitle("Success Notification"))
-            .child(self.success_notification_alerts())
+            .child(self.success_notification())
             .child(self.add_subtitle("System Status Banner"))
-            .child(self.system_status_banner_alerts())
+            .child(self.system_status_banner())
             .child(self.add_subtitle("Interactive Alert with Custom Action"))
-            .child(self.interactive_alert_with_custom_action_alerts())
+            .child(self.interactive_alert_with_custom_action())
             .child(self.add_subtitle("Multi-line Content with Formatting"))
-            .child(self.multi_line_content_with_formatting_alerts())
+            .child(self.multi_line_content_with_formatting())
             .into_any_element()
     }
 
@@ -144,7 +144,7 @@ impl AlertComponent {
             .into_any_element()
     }
 
-    fn banner_mode_alerts(&self) -> AnyElement {
+    fn banner_mode(&self) -> AnyElement {
         v_flex()
             .gap_4()
             .child(
@@ -179,14 +179,14 @@ impl AlertComponent {
             .into_any_element()
     }
 
-    fn custom_icons_alerts(&self) -> AnyElement {
+    fn custom_icons(&self) -> AnyElement {
         Alert::new("custom-icon", "Meeting scheduled for tomorrow at 3 PM.")
             .title("Calendar Reminder")
             .icon(IconName::Calendar)
             .into_any_element()
     }
 
-    fn with_markdown_content_alerts(&self) -> AnyElement {
+    fn with_markdown_content(&self) -> AnyElement {
         Alert::error(
             "error-with-markdown",
             "Please verify your billing information and try again.\n\
@@ -198,7 +198,7 @@ impl AlertComponent {
         .into_any_element()
     }
 
-    fn conditional_visibility_alerts(&self) -> AnyElement {
+    fn conditional_visibility(&self) -> AnyElement {
         let should_show_alert = true; // This would be based on some application logic
 
         Alert::info("conditional-alert", "This alert may be hidden.")
@@ -207,7 +207,7 @@ impl AlertComponent {
             .into_any_element()
     }
 
-    fn form_validation_errors_alerts(&self) -> AnyElement {
+    fn form_validation_errors(&self) -> AnyElement {
         Alert::error(
             "validation-error",
             "Please correct the following errors before submitting:\n\
@@ -219,7 +219,7 @@ impl AlertComponent {
         .into_any_element()
     }
 
-    fn success_notification_alerts(&self) -> AnyElement {
+    fn success_notification(&self) -> AnyElement {
         Alert::success(
             "save-success",
             "Your profile has been updated successfully.",
@@ -231,7 +231,7 @@ impl AlertComponent {
         .into_any_element()
     }
 
-    fn system_status_banner_alerts(&self) -> AnyElement {
+    fn system_status_banner(&self) -> AnyElement {
         Alert::warning(
             "maintenance-banner",
             "Scheduled maintenance will occur tonight from 2:00 AM to 4:00 AM EST. \
@@ -242,7 +242,7 @@ impl AlertComponent {
         .into_any_element()
     }
 
-    fn interactive_alert_with_custom_action_alerts(&self) -> AnyElement {
+    fn interactive_alert_with_custom_action(&self) -> AnyElement {
         Alert::info(
             "update-available",
             "A new version of the application is available.",
@@ -256,7 +256,7 @@ impl AlertComponent {
         .into_any_element()
     }
 
-    fn multi_line_content_with_formatting_alerts(&self) -> AnyElement {
+    fn multi_line_content_with_formatting(&self) -> AnyElement {
         // Alert::warning(
         //     "security-alert",
         //     markdown(
