@@ -5,6 +5,7 @@ use super::AccordionComponent;
 use super::AlertComponent;
 use super::AvatarComponent;
 use super::BadgeComponent;
+use super::ButtonComponent;
 
 #[derive(Debug, Clone, Copy, Display, EnumString, EnumIter, PartialEq)]
 pub enum Components {
@@ -12,7 +13,7 @@ pub enum Components {
     Alert,
     Avatar,
     Badge,
-    // Button,
+    Button,
     // Calendar,
     // Chart,
     // Checkbox,
@@ -80,6 +81,7 @@ impl Components {
             Components::Alert => Box::new(AlertComponent),
             Components::Avatar => Box::new(AvatarComponent),
             Components::Badge => Box::new(BadgeComponent),
+            Components::Button => Box::new(ButtonComponent),
         }
     }
 }
