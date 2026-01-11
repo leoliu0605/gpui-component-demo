@@ -45,7 +45,7 @@ impl ComponentRenderer for AlertComponent {
     }
 
     fn description(&self) -> &'static str {
-        "A component to display important messages to users"
+        "A versatile alert component for displaying important messages to users. \nSupports multiple variants (info, success, warning, error), custom icons, optional titles, closable functionality, \nand banner mode. Perfect for notifications, status messages, and user feedback."
     }
 
     fn link(&self) -> &'static str {

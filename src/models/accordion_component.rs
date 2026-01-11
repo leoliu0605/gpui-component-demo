@@ -32,7 +32,7 @@ impl ComponentRenderer for AccordionComponent {
     }
 
     fn description(&self) -> &'static str {
-        "A collapsible content container with expandable sections"
+        "An accordion component that allows users to show and hide sections of content. \nIt uses collapse functionality internally to create collapsible panels."
     }
 
     fn link(&self) -> &'static str {
