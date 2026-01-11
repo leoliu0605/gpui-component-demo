@@ -2,57 +2,54 @@ use gpui::*;
 use gpui_component::avatar::{Avatar, AvatarGroup};
 use gpui_component::*;
 
-use crate::models::ComponentRenderer;
+use crate::models::{ComponentMeta, subtitle};
 
-pub struct AvatarComponent;
+/// The actual View that renders avatar examples
+pub struct AvatarComponentView;
 
-impl ComponentRenderer for AvatarComponent {
-    fn show(&self, _window: &mut Window, _cx: &mut App) -> AnyElement {
+impl ComponentMeta for AvatarComponentView {
+    const DESCRIPTION: &'static str = "The Avatar component displays user profile images with intelligent fallbacks. \nWhen no image is provided, it shows user initials or a placeholder icon.";
+    const LINK: &'static str = "https://longbridge.github.io/gpui-component/docs/components/avatar";
+}
+
+impl Render for AvatarComponentView {
+    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
             .max_w_96()
-            .child(self.add_subtitle("Basic Avatar"))
+            .child(subtitle("Basic Avatar"))
             .child(self.basic_avatar())
-            .child(self.add_subtitle("Avatar with Fallback Text"))
+            .child(subtitle("Avatar with Fallback Text"))
             .child(self.avatar_with_fallback_text())
-            .child(self.add_subtitle("Avatar Placeholder"))
+            .child(subtitle("Avatar Placeholder"))
             .child(self.avatar_placeholder())
-            .child(self.add_subtitle("Avatar Sizes"))
+            .child(subtitle("Avatar Sizes"))
             .child(self.avatar_sizes())
-            .child(self.add_subtitle("Custom Styling"))
-            .child(self.custom_styling(_cx))
-            .child(self.add_subtitle("Basic Group"))
+            .child(subtitle("Custom Styling"))
+            .child(self.custom_styling(cx))
+            .child(subtitle("Basic Group"))
             .child(self.basic_group())
-            .child(self.add_subtitle("Group with Limit"))
+            .child(subtitle("Group with Limit"))
             .child(self.group_with_limit())
-            .child(self.add_subtitle("Group with Ellipsis"))
+            .child(subtitle("Group with Ellipsis"))
             .child(self.group_with_ellipsis())
-            .child(self.add_subtitle("Group Sizes"))
+            .child(subtitle("Group Sizes"))
             .child(self.group_sizes())
-            .child(self.add_subtitle("Adding Multiple Avatars"))
+            .child(subtitle("Adding Multiple Avatars"))
             .child(self.adding_multiple_avatars())
-            .child(self.add_subtitle("Team Display"))
+            .child(subtitle("Team Display"))
             .child(self.team_display())
-            .child(self.add_subtitle("User Profile Header"))
-            .child(self.user_profile_header(_cx))
-            .child(self.add_subtitle("Anonymous User"))
+            .child(subtitle("User Profile Header"))
+            .child(self.user_profile_header(cx))
+            .child(subtitle("Anonymous User"))
             .child(self.anonymous_user())
-            .child(self.add_subtitle("Avatar with Custom Colors"))
+            .child(subtitle("Avatar with Custom Colors"))
             .child(self.avatar_with_custom_colors())
-            .into_any_element()
-    }
-
-    fn description(&self) -> &'static str {
-        "The Avatar component displays user profile images with intelligent fallbacks. \nWhen no image is provided, it shows user initials or a placeholder icon. \nThe component supports various sizes and can be grouped together for team displays."
-    }
-
-    fn link(&self) -> &'static str {
-        "https://longbridge.github.io/gpui-component/docs/components/avatar"
     }
 }
 
-impl AvatarComponent {
+impl AvatarComponentView {
     /// Example code for the Avatar component
 
     fn basic_avatar(&self) -> AnyElement {
@@ -89,7 +86,7 @@ impl AvatarComponent {
             .into_any_element()
     }
 
-    fn custom_styling(&self, cx: &mut App) -> AnyElement {
+    fn custom_styling(&self, cx: &Context<Self>) -> AnyElement {
         Avatar::new()
             .src("https://example.com/avatar.jpg")
             .with_size(px(100.))
@@ -205,7 +202,7 @@ impl AvatarComponent {
             .into_any_element()
     }
 
-    fn user_profile_header(&self, cx: &mut App) -> AnyElement {
+    fn user_profile_header(&self, cx: &Context<Self>) -> AnyElement {
         h_flex()
             .items_center()
             .gap_4()

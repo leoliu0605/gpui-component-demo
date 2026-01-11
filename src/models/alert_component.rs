@@ -3,57 +3,54 @@ use gpui_component::alert::Alert;
 // use gpui_component::text::markdown;
 use gpui_component::*;
 
-use crate::models::ComponentRenderer;
+use crate::models::{ComponentMeta, subtitle};
 
-pub struct AlertComponent;
+/// The actual View that renders alert examples
+pub struct AlertComponentView;
 
-impl ComponentRenderer for AlertComponent {
-    fn show(&self, _window: &mut Window, _cx: &mut App) -> AnyElement {
+impl ComponentMeta for AlertComponentView {
+    const DESCRIPTION: &'static str = "A versatile alert component for displaying important messages to users. \nSupports multiple variants (info, success, warning, error), custom icons, optional titles, \nclosable functionality, and banner mode.";
+    const LINK: &'static str = "https://longbridge.github.io/gpui-component/docs/components/alert";
+}
+
+impl Render for AlertComponentView {
+    fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
             .max_w_96()
-            .child(self.add_subtitle("Basic Alert"))
+            .child(subtitle("Basic Alert"))
             .child(self.basic_alert())
-            .child(self.add_subtitle("Alert with Title"))
+            .child(subtitle("Alert with Title"))
             .child(self.alert_with_title())
-            .child(self.add_subtitle("Alert Variants"))
+            .child(subtitle("Alert Variants"))
             .child(self.alert_variants())
-            .child(self.add_subtitle("Alert Sizes"))
+            .child(subtitle("Alert Sizes"))
             .child(self.alert_sizes())
-            .child(self.add_subtitle("Closable Alerts"))
+            .child(subtitle("Closable Alerts"))
             .child(self.closable_alerts())
-            .child(self.add_subtitle("Banner Mode"))
+            .child(subtitle("Banner Mode"))
             .child(self.banner_mode())
-            .child(self.add_subtitle("Custom Icons"))
+            .child(subtitle("Custom Icons"))
             .child(self.custom_icons())
-            .child(self.add_subtitle("With Markdown Content"))
+            .child(subtitle("With Markdown Content"))
             .child(self.with_markdown_content())
-            .child(self.add_subtitle("Conditional Visibility"))
+            .child(subtitle("Conditional Visibility"))
             .child(self.conditional_visibility())
-            .child(self.add_subtitle("Form Validation Errors"))
+            .child(subtitle("Form Validation Errors"))
             .child(self.form_validation_errors())
-            .child(self.add_subtitle("Success Notification"))
+            .child(subtitle("Success Notification"))
             .child(self.success_notification())
-            .child(self.add_subtitle("System Status Banner"))
+            .child(subtitle("System Status Banner"))
             .child(self.system_status_banner())
-            .child(self.add_subtitle("Interactive Alert with Custom Action"))
+            .child(subtitle("Interactive Alert with Custom Action"))
             .child(self.interactive_alert_with_custom_action())
-            .child(self.add_subtitle("Multi-line Content with Formatting"))
+            .child(subtitle("Multi-line Content with Formatting"))
             .child(self.multi_line_content_with_formatting())
-            .into_any_element()
-    }
-
-    fn description(&self) -> &'static str {
-        "A versatile alert component for displaying important messages to users. \nSupports multiple variants (info, success, warning, error), custom icons, optional titles, closable functionality, \nand banner mode. Perfect for notifications, status messages, and user feedback."
-    }
-
-    fn link(&self) -> &'static str {
-        "https://longbridge.github.io/gpui-component/docs/components/alert"
     }
 }
 
-impl AlertComponent {
+impl AlertComponentView {
     /// Example code for the Alert component
 
     fn basic_alert(&self) -> Alert {

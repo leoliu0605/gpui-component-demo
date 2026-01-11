@@ -4,24 +4,44 @@ use gpui_component::{link::Link, scroll::ScrollableElement};
 
 pub struct ComponentShowcase {
     pub component: Components,
+    current_view: Option<AnyView>,
 }
 
 impl ComponentShowcase {
     pub fn new(component: Components) -> Self {
-        Self { component }
+        Self {
+            component,
+            current_view: None,
+        }
     }
 
-    pub fn set_component(&mut self, component: Components, cx: &mut Context<Self>) {
+    pub fn set_component(
+        &mut self,
+        component: Components,
+        window: &mut Window,
+        cx: &mut Context<Self>,
+    ) {
         self.component = component;
+        // Create new view for the component
+        self.current_view = Some(self.component.create_view(window, cx));
         cx.notify();
     }
 }
 
 impl Render for ComponentShowcase {
     fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
-        let renderer = self.component.get_renderer();
         let title = self.component.to_string();
-        let link = renderer.link();
+        let description = self.component.description();
+        let link = self.component.link();
+
+        // Create view if not exists
+        let component_view = if let Some(view) = &self.current_view {
+            view.clone()
+        } else {
+            let view = self.component.create_view(window, cx);
+            self.current_view = Some(view.clone());
+            view
+        };
 
         div()
             .flex()
@@ -44,7 +64,7 @@ impl Render for ComponentShowcase {
                         div()
                             .text_base()
                             .text_color(rgb(0x666666))
-                            .child(renderer.description()),
+                            .child(description),
                     ),
             )
             .child(div().w_full().h(px(1.)).bg(rgb(0xe0e0e0)))
@@ -53,7 +73,7 @@ impl Render for ComponentShowcase {
                     .flex_1()
                     .min_h_0()
                     .overflow_y_scrollbar()
-                    .child(renderer.show(window, cx)),
+                    .child(component_view),
             )
     }
 }

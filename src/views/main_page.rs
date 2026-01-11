@@ -11,10 +11,15 @@ impl MainPage {
         Self { showcase: None }
     }
 
-    pub fn show_component(&mut self, component: Components, cx: &mut Context<Self>) {
+    pub fn show_component(
+        &mut self,
+        component: Components,
+        window: &mut Window,
+        cx: &mut Context<Self>,
+    ) {
         if let Some(showcase) = &self.showcase {
             showcase.update(cx, |showcase, cx| {
-                showcase.set_component(component, cx);
+                showcase.set_component(component, window, cx);
             });
         } else {
             self.showcase = Some(cx.new(|_cx| ComponentShowcase::new(component)));

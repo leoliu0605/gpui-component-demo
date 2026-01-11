@@ -5,74 +5,72 @@ use gpui::*;
 use gpui_component::calendar::{Calendar, CalendarEvent, CalendarState, Date, Matcher};
 use gpui_component::*;
 
-use crate::models::ComponentRenderer;
+use crate::models::{ComponentMeta, subtitle};
 
-pub struct CalendarComponent;
+/// The actual View that renders calendar examples
+pub struct CalendarComponentView;
 
-impl ComponentRenderer for CalendarComponent {
-    fn show(&self, _window: &mut Window, _cx: &mut App) -> AnyElement {
+impl ComponentMeta for CalendarComponentView {
+    const DESCRIPTION: &'static str = "A standalone calendar component that provides a rich interface for date selection and navigation. \nSupports single date selection, date range selection, and multiple month views.";
+    const LINK: &'static str =
+        "https://longbridge.github.io/gpui-component/docs/components/calendar";
+}
+
+impl Render for CalendarComponentView {
+    fn render(&mut self, window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
             .max_w_96()
-            .child(self.add_subtitle("Basic Calendar"))
-            .child(self.basic_calendar(_window, _cx))
-            .child(self.add_subtitle("Calendar with Initial Date"))
-            .child(self.calendar_with_initial_date(_window, _cx))
-            .child(self.add_subtitle("Date Range Calendar"))
-            .child(self.date_range_calendar(_window, _cx))
-            .child(self.add_subtitle("Multiple Months Display"))
-            .child(self.multiple_months_display(_window, _cx))
-            .child(self.add_subtitle("Calendar Sizes"))
-            .child(self.calendar_sizes(_window, _cx))
-            .child(self.add_subtitle("Disabled Weekends"))
-            .child(self.disabled_weekends(_window, _cx))
-            .child(self.add_subtitle("Disabled Specific Weekdays"))
-            .child(self.disabled_specific_weekdays(_window, _cx))
-            .child(self.add_subtitle("Disabled Date Range"))
-            .child(self.disabled_date_range(_window, _cx))
-            .child(self.add_subtitle("Disabled Date Interval"))
-            .child(self.disabled_date_interval(_window, _cx))
-            .child(self.add_subtitle("Custom Disabled Dates"))
-            .child(self.custom_disabled_dates(_window, _cx))
-            .child(self.add_subtitle("Custom Year Range"))
-            .child(self.custom_year_range(_window, _cx))
-            .child(self.add_subtitle("Handle Selection Events"))
-            .child(self.handle_selection_events(_window, _cx))
-            .child(self.add_subtitle("Business Days Only Calendar"))
-            .child(self.business_days_only_calendar(_window, _cx))
-            .child(self.add_subtitle("Holiday Calendar"))
-            .child(self.holiday_calendar(_window, _cx))
-            .child(self.add_subtitle("Multi-Month Range Selector"))
-            .child(self.multi_month_range_selector(_window, _cx))
-            .child(self.add_subtitle("Quarterly View Calendar"))
-            .child(self.quarterly_view_calendar(_window, _cx))
-            .child(self.add_subtitle("Custom Styling"))
-            .child(self.custom_styling(_window, _cx))
-            .child(self.add_subtitle("Event Planning Calendar"))
-            .child(self.event_planning_calendar(_window, _cx))
-            .child(self.add_subtitle("Vacation Booking Calendar"))
-            .child(self.vacation_booking_calendar(_window, _cx))
-            .child(self.add_subtitle("Report Date Range Selector"))
-            .child(self.report_date_range_selector(_window, _cx))
-            .child(self.add_subtitle("Availability Calendar"))
-            .child(self.availability_calendar(_window, _cx))
-            .into_any_element()
-    }
-
-    fn description(&self) -> &'static str {
-        "A standalone calendar component that provides a rich interface for date selection and navigation. \nThe Calendar component supports single date selection, date range selection, multiple month views, \ncustom disabled dates, and comprehensive keyboard navigation."
-    }
-
-    fn link(&self) -> &'static str {
-        "https://longbridge.github.io/gpui-component/docs/components/calendar"
+            .child(subtitle("Basic Calendar"))
+            .child(self.basic_calendar(window, cx))
+            .child(subtitle("Calendar with Initial Date"))
+            .child(self.calendar_with_initial_date(window, cx))
+            .child(subtitle("Date Range Calendar"))
+            .child(self.date_range_calendar(window, cx))
+            .child(subtitle("Multiple Months Display"))
+            .child(self.multiple_months_display(window, cx))
+            .child(subtitle("Calendar Sizes"))
+            .child(self.calendar_sizes(window, cx))
+            .child(subtitle("Disabled Weekends"))
+            .child(self.disabled_weekends(window, cx))
+            .child(subtitle("Disabled Specific Weekdays"))
+            .child(self.disabled_specific_weekdays(window, cx))
+            .child(subtitle("Disabled Date Range"))
+            .child(self.disabled_date_range(window, cx))
+            .child(subtitle("Disabled Date Interval"))
+            .child(self.disabled_date_interval(window, cx))
+            .child(subtitle("Custom Disabled Dates"))
+            .child(self.custom_disabled_dates(window, cx))
+            .child(subtitle("Custom Year Range"))
+            .child(self.custom_year_range(window, cx))
+            .child(subtitle("Handle Selection Events"))
+            .child(self.handle_selection_events(window, cx))
+            .child(subtitle("Business Days Only Calendar"))
+            .child(self.business_days_only_calendar(window, cx))
+            .child(subtitle("Holiday Calendar"))
+            .child(self.holiday_calendar(window, cx))
+            .child(subtitle("Multi-Month Range Selector"))
+            .child(self.multi_month_range_selector(window, cx))
+            .child(subtitle("Quarterly View Calendar"))
+            .child(self.quarterly_view_calendar(window, cx))
+            .child(subtitle("Custom Styling"))
+            .child(self.custom_styling(window, cx))
+            .child(subtitle("Event Planning Calendar"))
+            .child(self.event_planning_calendar(window, cx))
+            .child(subtitle("Vacation Booking Calendar"))
+            .child(self.vacation_booking_calendar(window, cx))
+            .child(subtitle("Report Date Range Selector"))
+            .child(self.report_date_range_selector(window, cx))
+            .child(subtitle("Availability Calendar"))
+            .child(self.availability_calendar(window, cx))
     }
 }
 
-impl CalendarComponent {
+impl CalendarComponentView {
     /// Example code for the Calendar component
 
-    fn basic_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn basic_calendar(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -82,7 +80,11 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn calendar_with_initial_date(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn calendar_with_initial_date(
+        &self,
+        window: &mut Window,
+        cx: &mut Context<Self>,
+    ) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -97,7 +99,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn date_range_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn date_range_calendar(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -117,7 +119,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn multiple_months_display(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn multiple_months_display(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         let state = cx.new(|cx| CalendarState::new(window, cx));
 
         v_flex()
@@ -137,7 +139,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn calendar_sizes(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn calendar_sizes(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         let state = cx.new(|cx| CalendarState::new(window, cx));
 
         v_flex()
@@ -150,7 +152,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn disabled_weekends(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn disabled_weekends(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -163,7 +165,11 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn disabled_specific_weekdays(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn disabled_specific_weekdays(
+        &self,
+        window: &mut Window,
+        cx: &mut Context<Self>,
+    ) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -176,7 +182,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn disabled_date_range(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn disabled_date_range(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -194,7 +200,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn disabled_date_interval(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn disabled_date_interval(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -213,7 +219,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn custom_disabled_dates(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn custom_disabled_dates(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         v_flex()
             .gap_4()
             .child(h_flex().gap_4().child({
@@ -249,7 +255,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn custom_year_range(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn custom_year_range(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -262,13 +268,13 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn handle_selection_events(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn handle_selection_events(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
                 let state = cx.new(|cx| CalendarState::new(window, cx));
 
-                let _ = cx.subscribe(&state, |_, event, _| match event {
+                let _ = cx.subscribe(&state, |_, _, event, _| match event {
                     CalendarEvent::Selected(date) => match date {
                         Date::Single(Some(selected_date)) => {
                             println!("Date selected: {}", selected_date);
@@ -290,7 +296,11 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn business_days_only_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn business_days_only_calendar(
+        &self,
+        window: &mut Window,
+        cx: &mut Context<Self>,
+    ) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -305,7 +315,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn holiday_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn holiday_calendar(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -328,7 +338,11 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn multi_month_range_selector(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn multi_month_range_selector(
+        &self,
+        window: &mut Window,
+        cx: &mut Context<Self>,
+    ) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -343,7 +357,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn quarterly_view_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn quarterly_view_calendar(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -355,7 +369,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn custom_styling(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn custom_styling(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -373,7 +387,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn event_planning_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn event_planning_calendar(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -392,7 +406,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn vacation_booking_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn vacation_booking_calendar(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -407,7 +421,11 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn report_date_range_selector(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn report_date_range_selector(
+        &self,
+        window: &mut Window,
+        cx: &mut Context<Self>,
+    ) -> AnyElement {
         h_flex()
             .gap_4()
             .child({
@@ -423,7 +441,7 @@ impl CalendarComponent {
             .into_any_element()
     }
 
-    fn availability_calendar(&self, window: &mut Window, cx: &mut App) -> AnyElement {
+    fn availability_calendar(&self, window: &mut Window, cx: &mut Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child({

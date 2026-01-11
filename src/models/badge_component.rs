@@ -4,51 +4,48 @@ use gpui_component::badge::Badge;
 use gpui_component::link::Link;
 use gpui_component::*;
 
-use crate::models::ComponentRenderer;
+use crate::models::{ComponentMeta, subtitle};
 
-pub struct BadgeComponent;
+/// The actual View that renders badge examples
+pub struct BadgeComponentView;
 
-impl ComponentRenderer for BadgeComponent {
-    fn show(&self, _window: &mut Window, _cx: &mut App) -> AnyElement {
+impl ComponentMeta for BadgeComponentView {
+    const DESCRIPTION: &'static str = "A versatile badge component that can display counts, dots, or icons on elements. \nPerfect for indicating notifications, status, or other contextual information.";
+    const LINK: &'static str = "https://longbridge.github.io/gpui-component/docs/components/badge";
+}
+
+impl Render for BadgeComponentView {
+    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
             .max_w_96()
-            .child(self.add_subtitle("Badge with Count"))
+            .child(subtitle("Badge with Count"))
             .child(self.badge_with_count())
-            .child(self.add_subtitle("Variants"))
+            .child(subtitle("Variants"))
             .child(self.variants())
-            .child(self.add_subtitle("Badge Sizes"))
+            .child(subtitle("Badge Sizes"))
             .child(self.badge_sizes())
-            .child(self.add_subtitle("Badge Colors"))
-            .child(self.badge_colors(_cx))
-            .child(self.add_subtitle("Badge on Icons"))
+            .child(subtitle("Badge Colors"))
+            .child(self.badge_colors(cx))
+            .child(subtitle("Badge on Icons"))
             .child(self.badge_on_icons())
-            .child(self.add_subtitle("Badge on Avatars"))
-            .child(self.badge_on_avatars(_cx))
-            .child(self.add_subtitle("Complex Nested Badges"))
-            .child(self.complex_nested_badges(_cx))
-            .child(self.add_subtitle("Notification Indicators"))
-            .child(self.notification_indicators(_cx))
-            .child(self.add_subtitle("Status Indicators"))
-            .child(self.status_indicators(_cx))
-            .child(self.add_subtitle("Different Badge Positions"))
+            .child(subtitle("Badge on Avatars"))
+            .child(self.badge_on_avatars(cx))
+            .child(subtitle("Complex Nested Badges"))
+            .child(self.complex_nested_badges(cx))
+            .child(subtitle("Notification Indicators"))
+            .child(self.notification_indicators(cx))
+            .child(subtitle("Status Indicators"))
+            .child(self.status_indicators(cx))
+            .child(subtitle("Different Badge Positions"))
             .child(self.different_badge_positions())
-            .child(self.add_subtitle("Count Formatting"))
+            .child(subtitle("Count Formatting"))
             .child(self.count_formatting())
-            .into_any_element()
-    }
-
-    fn description(&self) -> &'static str {
-        "A versatile badge component that can display counts, dots, or icons on elements. \nPerfect for indicating notifications, status, or other contextual information on avatars, icons, or other UI elements."
-    }
-
-    fn link(&self) -> &'static str {
-        "https://longbridge.github.io/gpui-component/docs/components/badge"
     }
 }
 
-impl BadgeComponent {
+impl BadgeComponentView {
     /// Example code for the Badge component
 
     fn badge_with_count(&self) -> AnyElement {
@@ -103,7 +100,7 @@ impl BadgeComponent {
             .into_any_element()
     }
 
-    fn badge_colors(&self, cx: &mut App) -> AnyElement {
+    fn badge_colors(&self, cx: &Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child(
@@ -153,7 +150,7 @@ impl BadgeComponent {
             .into_any_element()
     }
 
-    fn badge_on_avatars(&self, cx: &mut App) -> AnyElement {
+    fn badge_on_avatars(&self, cx: &Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child(
@@ -179,7 +176,7 @@ impl BadgeComponent {
             .into_any_element()
     }
 
-    fn complex_nested_badges(&self, cx: &mut App) -> AnyElement {
+    fn complex_nested_badges(&self, cx: &Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child(
@@ -205,7 +202,7 @@ impl BadgeComponent {
             .into_any_element()
     }
 
-    fn notification_indicators(&self, cx: &mut App) -> AnyElement {
+    fn notification_indicators(&self, cx: &Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child(
@@ -232,7 +229,7 @@ impl BadgeComponent {
             .into_any_element()
     }
 
-    fn status_indicators(&self, cx: &mut App) -> AnyElement {
+    fn status_indicators(&self, cx: &Context<Self>) -> AnyElement {
         h_flex()
             .gap_4()
             .child(

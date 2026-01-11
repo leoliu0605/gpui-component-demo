@@ -2,47 +2,45 @@ use gpui::*;
 use gpui_component::accordion::Accordion;
 use gpui_component::*;
 
-use crate::models::ComponentRenderer;
+use crate::models::{ComponentMeta, subtitle};
 
-pub struct AccordionComponent;
+/// The actual View that renders accordion examples
+pub struct AccordionComponentView;
 
-impl ComponentRenderer for AccordionComponent {
-    fn show(&self, _window: &mut Window, _cx: &mut App) -> AnyElement {
+impl ComponentMeta for AccordionComponentView {
+    const DESCRIPTION: &'static str = "An accordion component that allows users to show and hide sections of content. \nIt uses collapse functionality internally to create collapsible panels.";
+    const LINK: &'static str =
+        "https://longbridge.github.io/gpui-component/docs/components/accordion";
+}
+
+impl Render for AccordionComponentView {
+    fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
             .max_w_96()
-            .child(self.add_subtitle("Basic Accordion"))
+            .child(subtitle("Basic Accordion"))
             .child(self.basic_accordion())
-            .child(self.add_subtitle("Multiple Open Items"))
+            .child(subtitle("Multiple Open Items"))
             .child(self.multiple_open_items_accordion())
-            .child(self.add_subtitle("With Borders"))
+            .child(subtitle("With Borders"))
             .child(self.with_borders_accordion())
-            .child(self.add_subtitle("Different Sizes"))
+            .child(subtitle("Different Sizes"))
             .child(self.different_sizes_accordion())
-            .child(self.add_subtitle("Handle Toggle Events"))
+            .child(subtitle("Handle Toggle Events"))
             .child(self.handle_toggle_events_accordion())
-            .child(self.add_subtitle("Disabled State"))
+            .child(subtitle("Disabled State"))
             .child(self.disabled_state_accordion())
-            .child(self.add_subtitle("With Custom Icons"))
+            .child(subtitle("With Custom Icons"))
             .child(self.with_custom_icons_accordion())
-            .child(self.add_subtitle("Nested Accordions"))
+            .child(subtitle("Nested Accordions"))
             .child(self.nested_accordions_accordion())
-            .into_any_element()
-    }
-
-    fn description(&self) -> &'static str {
-        "An accordion component that allows users to show and hide sections of content. \nIt uses collapse functionality internally to create collapsible panels."
-    }
-
-    fn link(&self) -> &'static str {
-        "https://longbridge.github.io/gpui-component/docs/components/accordion"
     }
 }
 
 /// FIXME: I think there are some bugs in Accordion component, it cannot open/close items when clicked.
 ///        Maybe need to fix it in future versions.
-impl AccordionComponent {
+impl AccordionComponentView {
     /// Example code for the Accordion component
 
     fn basic_accordion(&self) -> AnyElement {

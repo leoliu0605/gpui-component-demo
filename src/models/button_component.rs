@@ -2,55 +2,52 @@ use gpui::*;
 use gpui_component::button::{Button, ButtonCustomVariant, ButtonGroup, ButtonVariants};
 use gpui_component::*;
 
-use crate::models::ComponentRenderer;
+use crate::models::{ComponentMeta, subtitle};
 
-pub struct ButtonComponent;
+/// The actual View that renders button examples
+pub struct ButtonComponentView;
 
-impl ComponentRenderer for ButtonComponent {
-    fn show(&self, _window: &mut Window, _cx: &mut App) -> AnyElement {
+impl ComponentMeta for ButtonComponentView {
+    const DESCRIPTION: &'static str = "The Button element with multiple variants, sizes, and states. \nSupports icons, loading states, and can be grouped together.";
+    const LINK: &'static str = "https://longbridge.github.io/gpui-component/docs/components/button";
+}
+
+impl Render for ButtonComponentView {
+    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
             .max_w_96()
-            .child(self.add_subtitle("Basic Button"))
+            .child(subtitle("Basic Button"))
             .child(self.basic_button())
-            .child(self.add_subtitle("Variants"))
+            .child(subtitle("Variants"))
             .child(self.variants())
-            .child(self.add_subtitle("Outline Buttons"))
+            .child(subtitle("Outline Buttons"))
             .child(self.outline_buttons())
-            .child(self.add_subtitle("Compact Button"))
+            .child(subtitle("Compact Button"))
             .child(self.compact_button())
-            .child(self.add_subtitle("Sizeable"))
+            .child(subtitle("Sizeable"))
             .child(self.sizeable())
-            .child(self.add_subtitle("With Icons"))
+            .child(subtitle("With Icons"))
             .child(self.with_icons())
-            .child(self.add_subtitle("With a dropdown caret icon"))
+            .child(subtitle("With a dropdown caret icon"))
             .child(self.with_a_dropdown_caret_icon())
-            .child(self.add_subtitle("Button States"))
+            .child(subtitle("Button States"))
             .child(self.button_states())
-            .child(self.add_subtitle("Button Group"))
+            .child(subtitle("Button Group"))
             .child(self.button_group())
-            .child(self.add_subtitle("Toggle Button Group"))
+            .child(subtitle("Toggle Button Group"))
             .child(self.toggle_button_group())
-            .child(self.add_subtitle("Custom Variant"))
-            .child(self.custom_variant(_cx))
-            .child(self.add_subtitle("With Tooltip"))
+            .child(subtitle("Custom Variant"))
+            .child(self.custom_variant(cx))
+            .child(subtitle("With Tooltip"))
             .child(self.with_tooltip())
-            .child(self.add_subtitle("Custom Children"))
+            .child(subtitle("Custom Children"))
             .child(self.custom_children())
-            .into_any_element()
-    }
-
-    fn description(&self) -> &'static str {
-        "The Button element with multiple variants, sizes, and states. \nSupports icons, loading states, and can be grouped together."
-    }
-
-    fn link(&self) -> &'static str {
-        "https://longbridge.github.io/gpui-component/docs/components/button"
     }
 }
 
-impl ButtonComponent {
+impl ButtonComponentView {
     /// Example code for the Button component
 
     fn basic_button(&self) -> AnyElement {
@@ -207,7 +204,7 @@ impl ButtonComponent {
             .into_any_element()
     }
 
-    fn custom_variant(&self, cx: &mut App) -> AnyElement {
+    fn custom_variant(&self, cx: &Context<Self>) -> AnyElement {
         let custom = ButtonCustomVariant::new(cx)
             .color(cx.theme().magenta)
             .foreground(cx.theme().primary_foreground)

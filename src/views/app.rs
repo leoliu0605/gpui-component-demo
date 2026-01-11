@@ -63,9 +63,9 @@ impl MyApp {
                             let main_page = self.main_page.clone();
                             SidebarMenuItem::new(component.to_string())
                                 .active(true)
-                                .on_click(cx.listener(move |_this, _, _, cx| {
+                                .on_click(cx.listener(move |_this, _, window, cx| {
                                     main_page.update(cx, |page, cx| {
-                                        page.show_component(component, cx);
+                                        page.show_component(component, window, cx);
                                     });
                                 }))
                         }))
