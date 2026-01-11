@@ -41,6 +41,8 @@ impl ComponentRenderer for AccordionComponent {
     }
 }
 
+/// FIXME: I think there are some bugs in Accordion component, it cannot open/close items when clicked.
+///        Maybe need to fix it in future versions.
 impl AccordionComponent {
     /// Example code for the Accordion component
 
