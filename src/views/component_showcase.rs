@@ -53,7 +53,7 @@ impl Render for ComponentShowcase {
                     .flex_1()
                     .min_h_0()
                     .p_6()
-                    .bg(rgb(0xf5f5f5))
+                    .bg(rgb(0xd9d9d9))
                     .rounded_lg()
                     .border_1()
                     .border_color(rgb(0xe0e0e0))
