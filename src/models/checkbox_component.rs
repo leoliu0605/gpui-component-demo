@@ -87,12 +87,12 @@ impl CheckboxComponentView {
     fn different_sizes(&self) -> AnyElement {
         h_flex()
             .gap_4()
-            .child(Checkbox::new("cb").text_xs().label("Extra Small"))
-            .child(Checkbox::new("cb").text_sm().label("Small"))
+            .child(Checkbox::new("cb-xs").text_xs().label("Extra Small"))
+            .child(Checkbox::new("cb-sm").text_sm().label("Small"))
             .child(
-                Checkbox::new("cb").label("Medium"), // default
+                Checkbox::new("cb-md").label("Medium"), // default
             )
-            .child(Checkbox::new("cb").text_lg().label("Large"))
+            .child(Checkbox::new("cb-lg").text_lg().label("Large"))
             .into_any_element()
     }
 
@@ -105,11 +105,13 @@ impl CheckboxComponentView {
     }
 
     fn without_label(&self) -> AnyElement {
-        Checkbox::new("checkbox").checked(true).into_any_element()
+        Checkbox::new("checkbox-no-label")
+            .checked(true)
+            .into_any_element()
     }
 
     fn custom_tab_order(&self) -> AnyElement {
-        Checkbox::new("checkbox")
+        Checkbox::new("checkbox-tab-order")
             .label("Custom tab order")
             .tab_index(2)
             .tab_stop(true)

@@ -105,13 +105,13 @@ impl ButtonComponentView {
         h_flex()
             .gap_4()
             .child(
-                Button::new("btn")
+                Button::new("btn-primary-outline")
                     .primary()
                     .outline()
                     .label("Primary Outline"),
             )
             .child(
-                Button::new("btn")
+                Button::new("btn-danger-outline")
                     .danger()
                     .outline()
                     .label("Danger Outline"),
@@ -121,7 +121,7 @@ impl ButtonComponentView {
 
     fn compact_button(&self) -> AnyElement {
         // Compact (reduced padding)
-        Button::new("btn")
+        Button::new("btn-compact")
             .label("Compact")
             .compact()
             .into_any_element()
@@ -130,12 +130,12 @@ impl ButtonComponentView {
     fn sizeable(&self) -> AnyElement {
         h_flex()
             .gap_4()
-            .child(Button::new("btn").xsmall().label("Extra Small"))
-            .child(Button::new("btn").small().label("Small"))
+            .child(Button::new("btn-xsmall").xsmall().label("Extra Small"))
+            .child(Button::new("btn-small").small().label("Small"))
             .child(
-                Button::new("btn").label("Medium"), // default
+                Button::new("btn-medium").label("Medium"), // default
             )
-            .child(Button::new("btn").large().label("Large"))
+            .child(Button::new("btn-large").large().label("Large"))
             .into_any_element()
     }
 
@@ -144,15 +144,17 @@ impl ButtonComponentView {
             .gap_4()
             .child(
                 // Icon before label
-                Button::new("btn").icon(IconName::Check).label("Confirm"),
+                Button::new("btn-icon-check")
+                    .icon(IconName::Check)
+                    .label("Confirm"),
             )
             .child(
                 // Icon only
-                Button::new("btn").icon(IconName::Search),
+                Button::new("btn-icon-search").icon(IconName::Search),
             )
             .child(
                 // Custom icon size
-                Button::new("btn")
+                Button::new("btn-icon-heart")
                     .icon(Icon::new(IconName::Heart))
                     .label("Like"),
             )
@@ -160,7 +162,7 @@ impl ButtonComponentView {
     }
 
     fn with_a_dropdown_caret_icon(&self) -> AnyElement {
-        Button::new("btn")
+        Button::new("btn-dropdown")
             .label("Options")
             .dropdown_caret(true)
             .into_any_element()
@@ -171,15 +173,15 @@ impl ButtonComponentView {
             .gap_4()
             .child(
                 // Disabled
-                Button::new("btn").label("Disabled").disabled(true),
+                Button::new("btn-disabled").label("Disabled").disabled(true),
             )
             .child(
                 // Loading
-                Button::new("btn").label("Loading").loading(true),
+                Button::new("btn-loading").label("Loading").loading(true),
             )
             .child(
                 // Selected
-                Button::new("btn").label("Selected").selected(true),
+                Button::new("btn-selected").label("Selected").selected(true),
             )
             .into_any_element()
     }

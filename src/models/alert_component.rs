@@ -108,12 +108,12 @@ impl AlertComponentView {
                 h_flex()
                     .gap_4()
                     .child(
-                        Alert::info("alert", "Message content")
+                        Alert::info("alert-xsmall", "Message content")
                             .xsmall()
                             .title("XSmall Alert"),
                     )
                     .child(
-                        Alert::info("alert", "Message content")
+                        Alert::info("alert-small", "Message content")
                             .small()
                             .title("Small Alert"),
                     ),
@@ -121,9 +121,9 @@ impl AlertComponentView {
             .child(
                 h_flex()
                     .gap_4()
-                    .child(Alert::info("alert", "Message content").title("Medium Alert"))
+                    .child(Alert::info("alert-medium", "Message content").title("Medium Alert"))
                     .child(
-                        Alert::info("alert", "Message content")
+                        Alert::info("alert-large", "Message content")
                             .large()
                             .title("Large Alert"),
                     ),
