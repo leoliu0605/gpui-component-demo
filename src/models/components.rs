@@ -3,12 +3,13 @@ use strum_macros::{Display, EnumIter, EnumString};
 
 use super::AccordionComponent;
 use super::AlertComponent;
+use super::AvatarComponent;
 
 #[derive(Debug, Clone, Copy, Display, EnumString, EnumIter, PartialEq)]
 pub enum Components {
     Accordion,
     Alert,
-    // Avatar,
+    Avatar,
     // Badge,
     // Button,
     // Calendar,
@@ -76,6 +77,7 @@ impl Components {
         match self {
             Components::Accordion => Box::new(AccordionComponent),
             Components::Alert => Box::new(AlertComponent),
+            Components::Avatar => Box::new(AvatarComponent),
         }
     }
 }
