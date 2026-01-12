@@ -52,16 +52,17 @@ impl Render for AlertComponentView {
 impl AlertComponentView {
     /// Example code for the Alert component
 
-    fn basic_alert(&self) -> Alert {
-        Alert::new("alert-id", "This is a basic alert message.")
+    fn basic_alert(&self) -> AnyElement {
+        Alert::new("alert-id", "This is a basic alert message.").into_any_element()
     }
 
-    fn alert_with_title(&self) -> Alert {
+    fn alert_with_title(&self) -> AnyElement {
         Alert::new(
             "alert-with-title",
             "Your changes have been saved successfully.",
         )
         .title("Success!")
+        .into_any_element()
     }
 
     fn alert_variants(&self) -> AnyElement {
