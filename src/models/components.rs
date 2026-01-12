@@ -33,7 +33,7 @@ use super::DropdownButtonComponentView;
 // use super::NumberInputComponentView;
 // use super::OptInputComponentView;
 // use super::PlotComponentView;
-// use super::PopoverComponentView;
+use super::PopoverComponentView;
 // use super::ProgressComponentView;
 // use super::RadioComponentView;
 // use super::ResizableComponentView;
@@ -101,7 +101,7 @@ pub enum Components {
     // NumberInput,
     // OptInput,
     // Plot,
-    // Popover,
+    Popover,
     // Progress,
     // Radio,
     // Resizable,
@@ -158,7 +158,7 @@ impl Components {
             // Components::NumberInput => cx.new(|_cx| NumberInputComponentView).into(),
             // Components::OptInput => cx.new(|_cx| OptInputComponentView).into(),
             // Components::Plot => cx.new(|_cx| PlotComponentView).into(),
-            // Components::Popover => cx.new(|_cx| PopoverComponentView).into(),
+            Components::Popover => cx.new(|_cx| PopoverComponentView::new()).into(),
             // Components::Progress => cx.new(|_cx| ProgressComponentView).into(),
             // Components::Radio => cx.new(|_cx| RadioComponentView).into(),
             // Components::Resizable => cx.new(|_cx| ResizableComponentView).into(),
@@ -213,7 +213,7 @@ impl Components {
             // Components::NumberInput => NumberInputComponentView::DESCRIPTION,
             // Components::OptInput => OptInputComponentView::DESCRIPTION,
             // Components::Plot => PlotComponentView::DESCRIPTION,
-            // Components::Popover => PopoverComponentView::DESCRIPTION,
+            Components::Popover => PopoverComponentView::DESCRIPTION,
             // Components::Progress => ProgressComponentView::DESCRIPTION,
             // Components::Radio => RadioComponentView::DESCRIPTION,
             // Components::Resizable => ResizableComponentView::DESCRIPTION,
@@ -268,7 +268,7 @@ impl Components {
             // Components::NumberInput => NumberInputComponentView::LINK,
             // Components::OptInput => OptInputComponentView::LINK,
             // Components::Plot => PlotComponentView::LINK,
-            // Components::Popover => PopoverComponentView::LINK,
+            Components::Popover => PopoverComponentView::LINK,
             // Components::Progress => ProgressComponentView::LINK,
             // Components::Radio => RadioComponentView::LINK,
             // Components::Resizable => ResizableComponentView::LINK,
