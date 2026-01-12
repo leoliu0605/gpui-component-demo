@@ -14,7 +14,7 @@ impl ComponentMeta for BadgeComponentView {
 }
 
 impl Render for BadgeComponentView {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
@@ -26,17 +26,17 @@ impl Render for BadgeComponentView {
             .child(subtitle("Badge Sizes"))
             .child(self.badge_sizes())
             .child(subtitle("Badge Colors"))
-            .child(self.badge_colors(cx))
+            .child(self.badge_colors(_cx))
             .child(subtitle("Badge on Icons"))
             .child(self.badge_on_icons())
             .child(subtitle("Badge on Avatars"))
-            .child(self.badge_on_avatars(cx))
+            .child(self.badge_on_avatars(_cx))
             .child(subtitle("Complex Nested Badges"))
-            .child(self.complex_nested_badges(cx))
+            .child(self.complex_nested_badges(_cx))
             .child(subtitle("Notification Indicators"))
-            .child(self.notification_indicators(cx))
+            .child(self.notification_indicators(_cx))
             .child(subtitle("Status Indicators"))
-            .child(self.status_indicators(cx))
+            .child(self.status_indicators(_cx))
             .child(subtitle("Different Badge Positions"))
             .child(self.different_badge_positions())
             .child(subtitle("Count Formatting"))

@@ -27,7 +27,7 @@ impl CheckboxComponentView {
 }
 
 impl Render for CheckboxComponentView {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
@@ -35,7 +35,7 @@ impl Render for CheckboxComponentView {
             .child(subtitle("Basic Checkbox"))
             .child(self.basic_checkbox())
             .child(subtitle("Controlled Checkbox"))
-            .child(self.controlled_checkbox(cx))
+            .child(self.controlled_checkbox(_cx))
             .child(subtitle("Different Sizes"))
             .child(self.different_sizes())
             .child(subtitle("Disabled State"))
@@ -47,7 +47,7 @@ impl Render for CheckboxComponentView {
             .child(subtitle("Checkbox List"))
             .child(self.checkbox_list())
             .child(subtitle("Form Integration"))
-            .child(self.form_integration(cx))
+            .child(self.form_integration(_cx))
     }
 }
 

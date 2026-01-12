@@ -12,7 +12,7 @@ impl ComponentMeta for ButtonComponentView {
 }
 
 impl Render for ButtonComponentView {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
@@ -38,7 +38,7 @@ impl Render for ButtonComponentView {
             .child(subtitle("Toggle Button Group"))
             .child(self.toggle_button_group())
             .child(subtitle("Custom Variant"))
-            .child(self.custom_variant(cx))
+            .child(self.custom_variant(_cx))
             .child(subtitle("With Tooltip"))
             .child(self.with_tooltip())
             .child(subtitle("Custom Children"))

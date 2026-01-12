@@ -30,8 +30,8 @@ impl ComponentMeta for AccordionComponentView {
 }
 
 impl Render for AccordionComponentView {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
-        let entity = cx.entity().clone();
+    fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
+        let entity = _cx.entity().clone();
 
         v_flex()
             .gap_2()
@@ -78,8 +78,8 @@ impl AccordionComponentView {
                     .open(self.is_open("basic-3"))
                     .child("Content for section 3")
             })
-            .on_toggle_click(move |open_indices, _window, cx| {
-                e.update(cx, |view, cx| {
+            .on_toggle_click(move |open_indices, _window, _cx| {
+                e.update(_cx, |view, cx| {
                     // Toggle based on which items are now open
                     view.open_items.clear();
                     view.open_items.extend(
@@ -115,8 +115,8 @@ impl AccordionComponentView {
                     .open(self.is_open("multiple-2"))
                     .child("Content 2")
             })
-            .on_toggle_click(move |open_indices, _window, cx| {
-                e.update(cx, |view, cx| {
+            .on_toggle_click(move |open_indices, _window, _cx| {
+                e.update(_cx, |view, cx| {
                     let keys = ["multiple-1", "multiple-2"];
                     for (i, key) in keys.iter().enumerate() {
                         if open_indices.contains(&i) {
@@ -141,8 +141,8 @@ impl AccordionComponentView {
                     .open(self.is_open("bordered-1"))
                     .child("Content 1")
             })
-            .on_toggle_click(move |open_indices, _window, cx| {
-                e.update(cx, |view, cx| {
+            .on_toggle_click(move |open_indices, _window, _cx| {
+                e.update(_cx, |view, cx| {
                     if open_indices.contains(&0) {
                         view.open_items.insert("bordered-1".to_string());
                     } else {
@@ -168,8 +168,8 @@ impl AccordionComponentView {
                             .open(self.is_open("small-1"))
                             .child("Content")
                     })
-                    .on_toggle_click(move |open_indices, _window, cx| {
-                        e1.update(cx, |view, cx| {
+                    .on_toggle_click(move |open_indices, _window, _cx| {
+                        e1.update(_cx, |view, cx| {
                             if open_indices.contains(&0) {
                                 view.open_items.insert("small-1".to_string());
                             } else {
@@ -187,8 +187,8 @@ impl AccordionComponentView {
                             .open(self.is_open("large-1"))
                             .child("Content")
                     })
-                    .on_toggle_click(move |open_indices, _window, cx| {
-                        e2.update(cx, |view, cx| {
+                    .on_toggle_click(move |open_indices, _window, _cx| {
+                        e2.update(_cx, |view, cx| {
                             if open_indices.contains(&0) {
                                 view.open_items.insert("large-1".to_string());
                             } else {
@@ -205,9 +205,9 @@ impl AccordionComponentView {
         let e = entity.clone();
 
         Accordion::new("toggle-events-accordion")
-            .on_toggle_click(move |open_indices, _window, cx| {
+            .on_toggle_click(move |open_indices, _window, _cx| {
                 println!("Open items: {:?}", open_indices);
-                e.update(cx, |view, cx| {
+                e.update(_cx, |view, cx| {
                     if open_indices.contains(&0) {
                         view.open_items.insert("toggle-1".to_string());
                     } else {
@@ -234,8 +234,8 @@ impl AccordionComponentView {
                     .open(self.is_open("disabled-1"))
                     .child("Content")
             })
-            .on_toggle_click(move |open_indices, _window, cx| {
-                e.update(cx, |view, cx| {
+            .on_toggle_click(move |open_indices, _window, _cx| {
+                e.update(_cx, |view, cx| {
                     if open_indices.contains(&0) {
                         view.open_items.insert("disabled-1".to_string());
                     } else {
@@ -261,8 +261,8 @@ impl AccordionComponentView {
                 .open(self.is_open("custom-1"))
                 .child("Settings content here")
             })
-            .on_toggle_click(move |open_indices, _window, cx| {
-                e.update(cx, |view, cx| {
+            .on_toggle_click(move |open_indices, _window, _cx| {
+                e.update(_cx, |view, cx| {
                     if open_indices.contains(&0) {
                         view.open_items.insert("custom-1".to_string());
                     } else {
@@ -294,8 +294,8 @@ impl AccordionComponentView {
                                     .open(self.is_open("nested-inner-2"))
                                     .child("Content")
                             })
-                            .on_toggle_click(move |open_indices, _window, cx| {
-                                e_inner.update(cx, |view, cx| {
+                            .on_toggle_click(move |open_indices, _window, _cx| {
+                                e_inner.update(_cx, |view, cx| {
                                     let keys = ["nested-inner-1", "nested-inner-2"];
                                     for (i, key) in keys.iter().enumerate() {
                                         if open_indices.contains(&i) {
@@ -309,8 +309,8 @@ impl AccordionComponentView {
                             }),
                     )
             })
-            .on_toggle_click(move |open_indices, _window, cx| {
-                e_outer.update(cx, |view, cx| {
+            .on_toggle_click(move |open_indices, _window, _cx| {
+                e_outer.update(_cx, |view, cx| {
                     if open_indices.contains(&0) {
                         view.open_items.insert("nested-outer-1".to_string());
                     } else {

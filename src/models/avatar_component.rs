@@ -12,7 +12,7 @@ impl ComponentMeta for AvatarComponentView {
 }
 
 impl Render for AvatarComponentView {
-    fn render(&mut self, _window: &mut Window, cx: &mut Context<Self>) -> impl IntoElement {
+    fn render(&mut self, _window: &mut Window, _cx: &mut Context<Self>) -> impl IntoElement {
         v_flex()
             .gap_2()
             .w_full()
@@ -26,7 +26,7 @@ impl Render for AvatarComponentView {
             .child(subtitle("Avatar Sizes"))
             .child(self.avatar_sizes())
             .child(subtitle("Custom Styling"))
-            .child(self.custom_styling(cx))
+            .child(self.custom_styling(_cx))
             .child(subtitle("Basic Group"))
             .child(self.basic_group())
             .child(subtitle("Group with Limit"))
@@ -40,7 +40,7 @@ impl Render for AvatarComponentView {
             .child(subtitle("Team Display"))
             .child(self.team_display())
             .child(subtitle("User Profile Header"))
-            .child(self.user_profile_header(cx))
+            .child(self.user_profile_header(_cx))
             .child(subtitle("Anonymous User"))
             .child(self.anonymous_user())
             .child(subtitle("Avatar with Custom Colors"))
