@@ -14,7 +14,7 @@ use super::ChartComponentView;
 use super::CheckboxComponentView;
 use super::ClipboardComponentView;
 use super::CollapsibleComponentView;
-// use super::ColorPickerComponentView;
+use super::ColorPickerComponentView;
 // use super::DatePickerComponentView;
 // use super::DescriptionListComponentView;
 // use super::DialogComponentView;
@@ -82,7 +82,7 @@ pub enum Components {
     Checkbox,
     Clipboard,
     Collapsible,
-    // ColorPicker,
+    ColorPicker,
     // DatePicker,
     // DescriptionList,
     // Dialog,
@@ -127,7 +127,7 @@ pub enum Components {
 impl Components {
     /// Create a new View for this component
     /// Takes a generic context that can be dereferenced to App
-    pub fn create_view<T>(&self, _: &mut Window, cx: &mut Context<T>) -> AnyView {
+    pub fn create_view<T>(&self, window: &mut Window, cx: &mut Context<T>) -> AnyView {
         match self {
             Components::Accordion => cx.new(|_cx| AccordionComponentView::new()).into(),
             Components::Alert => cx.new(|_cx| AlertComponentView).into(),
@@ -139,7 +139,9 @@ impl Components {
             Components::Checkbox => cx.new(|_cx| CheckboxComponentView::new()).into(),
             Components::Clipboard => cx.new(|_cx| ClipboardComponentView).into(),
             Components::Collapsible => cx.new(|_cx| CollapsibleComponentView::new()).into(),
-            // Components::ColorPicker => cx.new(|_cx| ColorPickerComponentView).into(),
+            Components::ColorPicker => cx
+                .new(|cx| ColorPickerComponentView::new(window, cx))
+                .into(),
             // Components::DatePicker => cx.new(|_cx| DatePickerComponentView).into(),
             // Components::DescriptionList => cx.new(|_cx| DescriptionListComponentView).into(),
             // Components::Dialog => cx.new(|_cx| DialogComponentView).into(),
@@ -194,7 +196,7 @@ impl Components {
             Components::Checkbox => CheckboxComponentView::DESCRIPTION,
             Components::Clipboard => ClipboardComponentView::DESCRIPTION,
             Components::Collapsible => CollapsibleComponentView::DESCRIPTION,
-            // Components::ColorPicker => ColorPickerComponentView::DESCRIPTION,
+            Components::ColorPicker => ColorPickerComponentView::DESCRIPTION,
             // Components::DatePicker => DatePickerComponentView::DESCRIPTION,
             // Components::DescriptionList => DescriptionListComponentView::DESCRIPTION,
             // Components::Dialog => DialogComponentView::DESCRIPTION,
@@ -249,7 +251,7 @@ impl Components {
             Components::Checkbox => CheckboxComponentView::LINK,
             Components::Clipboard => ClipboardComponentView::LINK,
             Components::Collapsible => CollapsibleComponentView::LINK,
-            // Components::ColorPicker => ColorPickerComponentView::LINK,
+            Components::ColorPicker => ColorPickerComponentView::LINK,
             // Components::DatePicker => DatePickerComponentView::LINK,
             // Components::DescriptionList => DescriptionListComponentView::LINK,
             // Components::Dialog => DialogComponentView::LINK,
