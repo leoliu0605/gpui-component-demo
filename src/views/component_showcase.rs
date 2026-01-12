@@ -1,6 +1,6 @@
 use crate::models::Components;
 use gpui::*;
-use gpui_component::{link::Link, scroll::ScrollableElement};
+use gpui_component::{divider::Divider, link::Link, scroll::ScrollableElement};
 
 pub struct ComponentShowcase {
     pub component: Components,
@@ -67,7 +67,7 @@ impl Render for ComponentShowcase {
                             .child(description),
                     ),
             )
-            .child(div().w_full().h(px(1.)).bg(rgb(0xe0e0e0)))
+            .child(Divider::horizontal())
             .child(
                 div()
                     .flex_1()
