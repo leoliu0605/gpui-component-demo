@@ -41,7 +41,7 @@ use super::PopoverComponentView;
 // use super::SettingsComponentView;
 // use super::SheetComponentView;
 // use super::SideComponentView;
-// use super::SkeletonComponentView;
+use super::SkeletonComponentView;
 // use super::SliderComponentView;
 // use super::SpinnerComponentView;
 // use super::StepperComponentView;
@@ -109,7 +109,7 @@ pub enum Components {
     // Settings,
     // Sheet,
     // Side,
-    // Skeleton,
+    Skeleton,
     // Slider,
     // Spinner,
     // Stepper,
@@ -166,7 +166,7 @@ impl Components {
             // Components::Settings => cx.new(|_cx| SettingsComponentView).into(),
             // Components::Sheet => cx.new(|_cx| SheetComponentView).into(),
             // Components::Side => cx.new(|_cx| SideComponentView).into(),
-            // Components::Skeleton => cx.new(|_cx| SkeletonComponentView).into(),
+            Components::Skeleton => cx.new(|_cx| SkeletonComponentView::new()).into(),
             // Components::Slider => cx.new(|_cx| SliderComponentView).into(),
             // Components::Spinner => cx.new(|_cx| SpinnerComponentView).into(),
             // Components::Stepper => cx.new(|_cx| StepperComponentView).into(),
@@ -221,7 +221,7 @@ impl Components {
             // Components::Settings => SettingsComponentView::DESCRIPTION,
             // Components::Sheet => SheetComponentView::DESCRIPTION,
             // Components::Side => SideComponentView::DESCRIPTION,
-            // Components::Skeleton => SkeletonComponentView::DESCRIPTION,
+            Components::Skeleton => SkeletonComponentView::DESCRIPTION,
             // Components::Slider => SliderComponentView::DESCRIPTION,
             // Components::Spinner => SpinnerComponentView::DESCRIPTION,
             // Components::Stepper => StepperComponentView::DESCRIPTION,
@@ -276,7 +276,7 @@ impl Components {
             // Components::Settings => SettingsComponentView::LINK,
             // Components::Sheet => SheetComponentView::LINK,
             // Components::Side => SideComponentView::LINK,
-            // Components::Skeleton => SkeletonComponentView::LINK,
+            Components::Skeleton => SkeletonComponentView::LINK,
             // Components::Slider => SliderComponentView::LINK,
             // Components::Spinner => SpinnerComponentView::LINK,
             // Components::Stepper => StepperComponentView::LINK,
