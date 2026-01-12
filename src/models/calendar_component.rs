@@ -7,7 +7,6 @@ use gpui_component::*;
 
 use crate::models::{ComponentMeta, subtitle};
 
-/// The actual View that renders calendar examples
 pub struct CalendarComponentView;
 
 impl ComponentMeta for CalendarComponentView {

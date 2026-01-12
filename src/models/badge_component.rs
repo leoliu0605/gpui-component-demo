@@ -6,7 +6,6 @@ use gpui_component::*;
 
 use crate::models::{ComponentMeta, subtitle};
 
-/// The actual View that renders badge examples
 pub struct BadgeComponentView;
 
 impl ComponentMeta for BadgeComponentView {

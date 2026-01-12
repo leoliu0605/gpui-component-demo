@@ -5,7 +5,6 @@ use gpui_component::*;
 
 use crate::models::{ComponentMeta, subtitle};
 
-/// The actual View that renders alert examples
 pub struct AlertComponentView;
 
 impl ComponentMeta for AlertComponentView {

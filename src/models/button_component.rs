@@ -4,7 +4,6 @@ use gpui_component::*;
 
 use crate::models::{ComponentMeta, subtitle};
 
-/// The actual View that renders button examples
 pub struct ButtonComponentView;
 
 impl ComponentMeta for ButtonComponentView {

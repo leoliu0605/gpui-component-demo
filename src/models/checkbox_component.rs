@@ -4,7 +4,6 @@ use gpui_component::*;
 
 use crate::models::{ComponentMeta, subtitle};
 
-/// The actual View that holds state and renders the checkbox examples
 pub struct CheckboxComponentView {
     is_checked: bool,
     agree_terms: bool,

@@ -4,7 +4,6 @@ use gpui_component::*;
 
 use crate::models::{ComponentMeta, subtitle};
 
-/// The actual View that renders avatar examples
 pub struct AvatarComponentView;
 
 impl ComponentMeta for AvatarComponentView {

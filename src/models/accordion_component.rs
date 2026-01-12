@@ -6,7 +6,6 @@ use gpui_component::*;
 
 use crate::models::{ComponentMeta, subtitle};
 
-/// The actual View that renders accordion examples
 pub struct AccordionComponentView {
     /// A set to track which accordion items are open by their unique key
     open_items: HashSet<String>,
