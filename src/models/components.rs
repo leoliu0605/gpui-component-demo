@@ -15,7 +15,7 @@ use super::CheckboxComponentView;
 use super::ClipboardComponentView;
 use super::CollapsibleComponentView;
 use super::ColorPickerComponentView;
-// use super::DatePickerComponentView;
+use super::DatePickerComponentView;
 // use super::DescriptionListComponentView;
 // use super::DialogComponentView;
 use super::DropdownButtonComponentView;
@@ -83,7 +83,7 @@ pub enum Components {
     Clipboard,
     Collapsible,
     ColorPicker,
-    // DatePicker,
+    DatePicker,
     // DescriptionList,
     // Dialog,
     DropdownButton,
@@ -142,7 +142,7 @@ impl Components {
             Components::ColorPicker => cx
                 .new(|cx| ColorPickerComponentView::new(window, cx))
                 .into(),
-            // Components::DatePicker => cx.new(|_cx| DatePickerComponentView).into(),
+            Components::DatePicker => cx.new(|_cx| DatePickerComponentView).into(),
             // Components::DescriptionList => cx.new(|_cx| DescriptionListComponentView).into(),
             // Components::Dialog => cx.new(|_cx| DialogComponentView).into(),
             Components::DropdownButton => cx.new(|_cx| DropdownButtonComponentView).into(),
@@ -197,7 +197,7 @@ impl Components {
             Components::Clipboard => ClipboardComponentView::DESCRIPTION,
             Components::Collapsible => CollapsibleComponentView::DESCRIPTION,
             Components::ColorPicker => ColorPickerComponentView::DESCRIPTION,
-            // Components::DatePicker => DatePickerComponentView::DESCRIPTION,
+            Components::DatePicker => DatePickerComponentView::DESCRIPTION,
             // Components::DescriptionList => DescriptionListComponentView::DESCRIPTION,
             // Components::Dialog => DialogComponentView::DESCRIPTION,
             Components::DropdownButton => DropdownButtonComponentView::DESCRIPTION,
@@ -252,7 +252,7 @@ impl Components {
             Components::Clipboard => ClipboardComponentView::LINK,
             Components::Collapsible => CollapsibleComponentView::LINK,
             Components::ColorPicker => ColorPickerComponentView::LINK,
-            // Components::DatePicker => DatePickerComponentView::LINK,
+            Components::DatePicker => DatePickerComponentView::LINK,
             // Components::DescriptionList => DescriptionListComponentView::LINK,
             // Components::Dialog => DialogComponentView::LINK,
             Components::DropdownButton => DropdownButtonComponentView::LINK,
