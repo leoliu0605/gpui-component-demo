@@ -2,7 +2,7 @@ use gpui::*;
 use gpui_component::*;
 use gpui_component_assets::Assets;
 
-use gpui_component_demo::views::MyApp;
+use gpui_component_sample::views::MyApp;
 
 actions!(my_app, [Quit]);
 

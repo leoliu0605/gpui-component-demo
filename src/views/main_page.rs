@@ -48,13 +48,13 @@ impl Render for MainPage {
                     div()
                         .text_3xl()
                         .font_weight(FontWeight::BOLD)
-                        .child("Welcome to GPUI Component Demo"),
+                        .child("Welcome to GPUI Component Sample"),
                 )
                 .child(
                     div()
                         .text_base()
                         .text_color(rgb(0x666666))
-                        .child("Select a component from the sidebar to view its demo"),
+                        .child("Select a component from the sidebar to view its sample."),
                 ),
         }
     }

@@ -17,7 +17,7 @@ impl RenderOnce for AppTitleBar {
                 .w_full()
                 .justify_center()
                 .pr_20()
-                .child("GPUI Component Demo"),
+                .child("GPUI Component Sample"),
         )
     }
 }

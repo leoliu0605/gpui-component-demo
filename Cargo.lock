@@ -2242,7 +2242,18 @@ dependencies = [
 ]
 
 [[package]]
-name = "gpui-component-demo"
+name = "gpui-component-macros"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "581a8cd1e38b2fd86d1029dd56a3296ffd1388fda295054104d89923755de902"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn 2.0.114",
+]
+
+[[package]]
+name = "gpui-component-sample"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -2252,17 +2263,6 @@ dependencies = [
  "gpui-component-assets",
  "strum 0.27.2",
  "strum_macros 0.27.2",
-]
-
-[[package]]
-name = "gpui-component-macros"
-version = "0.5.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "581a8cd1e38b2fd86d1029dd56a3296ffd1388fda295054104d89923755de902"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.114",
 ]
 
 [[package]]

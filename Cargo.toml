@@ -1,13 +1,13 @@
 [package]
-name = "gpui-component-demo"
+name = "gpui-component-sample"
 version = "0.1.0"
 edition = "2024"
 authors = ["Leo <jafee201153@gmail.com>"]
-description = "A demo application for gpui-component library"
-keywords = ["desktop", "gpui", "ui", "component", "demo"]
+description = "A sample application for gpui-component library"
+keywords = ["desktop", "gpui", "ui", "component", "sample"]
 license = "Apache-2.0"
-homepage = "https://github.com/leoliu0605/gpui-component-demo"
-repository = "https://github.com/leoliu0605/gpui-component-demo"
+homepage = "https://github.com/leoliu0605/gpui-component-sample"
+repository = "https://github.com/leoliu0605/gpui-component-sample"
 readme = "README.md"
 
 [dependencies]

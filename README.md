@@ -1,6 +1,6 @@
-# GPUI Component Demo
+# GPUI Component Sample
 
-A demo application showcasing the usage examples and visual presentation of components from the [gpui-component](https://github.com/longbridge/gpui-component) library.
+A sample application showcasing the usage examples and visual presentation of components from the [gpui-component](https://github.com/longbridge/gpui-component) library.
 
 ![alt text](images/screenshot.png)
 
@@ -19,8 +19,8 @@ This project serves as a comprehensive reference for developers who want to expl
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/leoliu0605/gpui-component-demo.git
-cd gpui-component-demo
+git clone https://github.com/leoliu0605/gpui-component-sample.git
+cd gpui-component-sample
 ```
 
 2. Build the project:
