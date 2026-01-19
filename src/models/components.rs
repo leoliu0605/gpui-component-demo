@@ -17,7 +17,7 @@ use super::CollapsibleComponentView;
 use super::ColorPickerComponentView;
 use super::DatePickerComponentView;
 use super::DescriptionListComponentView;
-// use super::DialogComponentView;
+use super::DialogComponentView;
 use super::DropdownButtonComponentView;
 // use super::EditorComponentView;
 // use super::FormComponentView;
@@ -85,7 +85,7 @@ pub enum Components {
     ColorPicker,
     DatePicker,
     DescriptionList,
-    // Dialog,
+    Dialog,
     DropdownButton,
     // Editor,
     // Form,
@@ -144,7 +144,7 @@ impl Components {
                 .into(),
             Components::DatePicker => cx.new(|_cx| DatePickerComponentView).into(),
             Components::DescriptionList => cx.new(|_cx| DescriptionListComponentView).into(),
-            // Components::Dialog => cx.new(|_cx| DialogComponentView).into(),
+            Components::Dialog => cx.new(|_cx| DialogComponentView).into(),
             Components::DropdownButton => cx.new(|_cx| DropdownButtonComponentView).into(),
             // Components::Editor => cx.new(|_cx| EditorComponentView).into(),
             // Components::Form => cx.new(|_cx| FormComponentView).into(),
@@ -199,7 +199,7 @@ impl Components {
             Components::ColorPicker => ColorPickerComponentView::DESCRIPTION,
             Components::DatePicker => DatePickerComponentView::DESCRIPTION,
             Components::DescriptionList => DescriptionListComponentView::DESCRIPTION,
-            // Components::Dialog => DialogComponentView::DESCRIPTION,
+            Components::Dialog => DialogComponentView::DESCRIPTION,
             Components::DropdownButton => DropdownButtonComponentView::DESCRIPTION,
             // Components::Editor => EditorComponentView::DESCRIPTION,
             // Components::Form => FormComponentView::DESCRIPTION,
@@ -254,7 +254,7 @@ impl Components {
             Components::ColorPicker => ColorPickerComponentView::LINK,
             Components::DatePicker => DatePickerComponentView::LINK,
             Components::DescriptionList => DescriptionListComponentView::LINK,
-            // Components::Dialog => DialogComponentView::LINK,
+            Components::Dialog => DialogComponentView::LINK,
             Components::DropdownButton => DropdownButtonComponentView::LINK,
             // Components::Editor => EditorComponentView::LINK,
             // Components::Form => FormComponentView::LINK,
