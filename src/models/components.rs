@@ -19,7 +19,7 @@ use super::DatePickerComponentView;
 use super::DescriptionListComponentView;
 use super::DialogComponentView;
 use super::DropdownButtonComponentView;
-// use super::EditorComponentView;
+use super::EditorComponentView;
 // use super::FormComponentView;
 // use super::GroupBoxComponentView;
 // use super::IconComponentView;
@@ -87,7 +87,7 @@ pub enum Components {
     DescriptionList,
     Dialog,
     DropdownButton,
-    // Editor,
+    Editor,
     // Form,
     // GroupBox,
     // Icon,
@@ -146,7 +146,7 @@ impl Components {
             Components::DescriptionList => cx.new(|_cx| DescriptionListComponentView).into(),
             Components::Dialog => cx.new(|_cx| DialogComponentView).into(),
             Components::DropdownButton => cx.new(|_cx| DropdownButtonComponentView).into(),
-            // Components::Editor => cx.new(|_cx| EditorComponentView).into(),
+            Components::Editor => cx.new(|_cx| EditorComponentView).into(),
             // Components::Form => cx.new(|_cx| FormComponentView).into(),
             // Components::GroupBox => cx.new(|_cx| GroupBoxComponentView).into(),
             // Components::Icon => cx.new(|_cx| IconComponentView).into(),
@@ -201,7 +201,7 @@ impl Components {
             Components::DescriptionList => DescriptionListComponentView::DESCRIPTION,
             Components::Dialog => DialogComponentView::DESCRIPTION,
             Components::DropdownButton => DropdownButtonComponentView::DESCRIPTION,
-            // Components::Editor => EditorComponentView::DESCRIPTION,
+            Components::Editor => EditorComponentView::DESCRIPTION,
             // Components::Form => FormComponentView::DESCRIPTION,
             // Components::GroupBox => GroupBoxComponentView::DESCRIPTION,
             // Components::Icon => IconComponentView::DESCRIPTION,
@@ -256,7 +256,7 @@ impl Components {
             Components::DescriptionList => DescriptionListComponentView::LINK,
             Components::Dialog => DialogComponentView::LINK,
             Components::DropdownButton => DropdownButtonComponentView::LINK,
-            // Components::Editor => EditorComponentView::LINK,
+            Components::Editor => EditorComponentView::LINK,
             // Components::Form => FormComponentView::LINK,
             // Components::GroupBox => GroupBoxComponentView::LINK,
             // Components::Icon => IconComponentView::LINK,
