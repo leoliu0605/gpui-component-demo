@@ -20,7 +20,7 @@ use super::DescriptionListComponentView;
 use super::DialogComponentView;
 use super::DropdownButtonComponentView;
 use super::EditorComponentView;
-// use super::FormComponentView;
+use super::FormComponentView;
 // use super::GroupBoxComponentView;
 // use super::IconComponentView;
 // use super::ImageComponentView;
@@ -88,7 +88,7 @@ pub enum Components {
     Dialog,
     DropdownButton,
     Editor,
-    // Form,
+    Form,
     // GroupBox,
     // Icon,
     // Image,
@@ -147,7 +147,7 @@ impl Components {
             Components::Dialog => cx.new(|_cx| DialogComponentView).into(),
             Components::DropdownButton => cx.new(|_cx| DropdownButtonComponentView).into(),
             Components::Editor => cx.new(|_cx| EditorComponentView).into(),
-            // Components::Form => cx.new(|_cx| FormComponentView).into(),
+            Components::Form => cx.new(|_cx| FormComponentView).into(),
             // Components::GroupBox => cx.new(|_cx| GroupBoxComponentView).into(),
             // Components::Icon => cx.new(|_cx| IconComponentView).into(),
             // Components::Image => cx.new(|_cx| ImageComponentView).into(),
@@ -202,7 +202,7 @@ impl Components {
             Components::Dialog => DialogComponentView::DESCRIPTION,
             Components::DropdownButton => DropdownButtonComponentView::DESCRIPTION,
             Components::Editor => EditorComponentView::DESCRIPTION,
-            // Components::Form => FormComponentView::DESCRIPTION,
+            Components::Form => FormComponentView::DESCRIPTION,
             // Components::GroupBox => GroupBoxComponentView::DESCRIPTION,
             // Components::Icon => IconComponentView::DESCRIPTION,
             // Components::Image => ImageComponentView::DESCRIPTION,
@@ -257,7 +257,7 @@ impl Components {
             Components::Dialog => DialogComponentView::LINK,
             Components::DropdownButton => DropdownButtonComponentView::LINK,
             Components::Editor => EditorComponentView::LINK,
-            // Components::Form => FormComponentView::LINK,
+            Components::Form => FormComponentView::LINK,
             // Components::GroupBox => GroupBoxComponentView::LINK,
             // Components::Icon => IconComponentView::LINK,
             // Components::Image => ImageComponentView::LINK,
